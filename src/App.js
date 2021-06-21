@@ -14,6 +14,7 @@ import HomePage from './components/HomePage';
 import Single from './components/Single';
 import Archive from './components/Archive';
 import Search from './components/Search';
+import News from './components/News';
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route path="/single/:type/:id" component={Single} />
+					<Route exact path="/news" component={News} />
 					<Route exact path="/archive/:type" component={Archive} />
 					<Route exact path="/archive/:type/:category" component={Archive} />
 					<Route path="/search" component={Search} />

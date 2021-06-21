@@ -64,86 +64,33 @@ function SideBar() {
 						<span>Stay Connected</span>
 					</h1>
 				</div>
-				<ul className="social-share">
+				<ul className="social-icons d-flex justify-content-between p-1">
 					<li>
-						<a href="https://www.linkedin.com/company/egypt-oil-&-gas/" className="facebook">
-							<i className="fa fa-linkedin" />
+						<a href="https://www.linkedin.com/company/egypt-oil-&-gas/"target="_blank" className="facebook">
+							<i className="fa fa-2x fa-linkedin" />
 						</a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/EgyptOilandGas" className="facebook">
-							<i className="fa fa-facebook" />
+						<a href="https://www.facebook.com/EgyptOilandGas"target="_blank" className="facebook">
+							<i className="fa fa-2x fa-facebook" />
 						</a>
 					</li>
 					<li>
-						<a href="https://twitter.com/EgyptOilandGas" className="twitter">
-							<i className="fa fa-twitter" />
+						<a href="https://twitter.com/EgyptOilandGas"target="_blank" className="twitter">
+							<i className="fa fa-2x fa-twitter" />
 						</a>
 					</li>
 					<li>
-						<a href="https://youtube.com/user/EgyptOilandGas" className="google">
-							<i className="fa fa-youtube" />
+						<a href="https://youtube.com/user/EgyptOilandGas"target="_blank" className="google">
+							<i className="fa fa-2x fa-youtube" />
 						</a>
 					</li>
 					<li>
-						<a href="https://www.instagram.com/egyptoilandgas/" className="google">
-							<i className="fa fa-instagram" />
+						<a href="https://www.instagram.com/egyptoilandgas/"target="_blank" className="google">
+							<i className="fa fa-2x fa-instagram" />
 						</a>
 					</li>
 				</ul>
-			</div>
-			<div className="widget features-slide-widget">
-				<div className="title-section">
-					<h1>
-						<span>Featured Posts</span>
-					</h1>
-					<SwiperArrows
-						color="#000"
-						prev={featSidebarPrev}
-						next={featSidebarNext}
-					/>
-				</div>
-				<div className="image-post-slider">
-					<Swiper
-						slidesPerView={1}
-						onInit={(swiper) => {
-							swiper.params.navigation.prevEl = featSidebarPrev.current;
-							swiper.params.navigation.nextEl = featSidebarNext.current;
-							swiper.navigation.init();
-							swiper.navigation.update();
-						}}
-					>
-						{news.map((post) => (
-							<SwiperSlide key={post.id}>
-								<li>
-									<div className="news-post image-post2">
-										<div className="post-gallery">
-											<img
-												src={post.featured_media_src_url}
-												alt={post.title.rendered}
-											/>
-											<div className="hover-box">
-												<div className="inner-hover">
-													<h2>
-														<a href="single-post.html">{post.title.rendered}</a>
-													</h2>
-													<ul className="post-tags">
-														<li>
-															<i className="fa fa-clock-o" />
-															<Moment format="YYYY/MM/DD">
-																{post.title.date}
-															</Moment>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
-								</li>
-							</SwiperSlide>
-						))}
-					</Swiper>
-				</div>
 			</div>
 			<div className="sidebar-table">
 				<div className="sidebar-table-header">

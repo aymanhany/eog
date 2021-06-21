@@ -113,12 +113,9 @@ function FeaturesToday() {
 										</div>
 									</SwiperSlide>
 								))}
-								<SwiperSlide>
-									<ViewMore type="features" />
-								</SwiperSlide>
 							</Swiper>
 						</div>
-						<h5 className="text-right my-2 mx-1">
+						<h5 className="text-right my-2">
 							<span>
 								<Link to="/archive/features">More &#8594;</Link>
 							</span>

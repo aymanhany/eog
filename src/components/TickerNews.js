@@ -34,7 +34,7 @@ function TickerNews() {
                         <span className="breaking-news">breaking news</span>
                         <div className="ticker-content">
                             <Swiper
-                                slidesPerView={3}
+                                slidesPerView={2}
                                 spaceBetween={15}
                                 autoplay={
                                     {delay: 3000}
@@ -44,7 +44,7 @@ function TickerNews() {
                                 {
                                     tickerData ?
                                         tickerData.map(post => (
-                                            <SwiperSlide key={post.id}><Link to={`/single/news/${post.id}`}>{renderHTML(post.title.rendered)}</Link></SwiperSlide>
+                                            <SwiperSlide key={post.id}><Link to={`/single/news/${post.id}`}>{renderHTML(post.title.rendered).substring(0, 60)}...</Link></SwiperSlide>
                                         ))
                                         : 'loading..'
                                 }

@@ -6,11 +6,11 @@ export default function Loading() {
 			<style jsx>
 				{`
 					.loader {
-						font-size: 25px;
+						font-size: 10px;
 						margin: 50px auto;
 						text-indent: -9999em;
-						width: 11em;
-						height: 11em;
+						width: 5em;
+						height: 5em;
 						border-radius: 50%;
 						background: #c69c6d;
 						background: -moz-linear-gradient(

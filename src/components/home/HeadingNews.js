@@ -49,6 +49,7 @@ function HeadingNews() {
 											src={post.featured_media_src_url}
 											alt=""
 											height="150"
+											className="border-none"
 										/>
 										<div className="hover-box">
 											<div className="inner-hover">
@@ -81,6 +82,7 @@ function HeadingNews() {
 														src={post.featured_media_src_url}
 														alt=""
 														height="300"
+														className="border-none"
 													/>
 													<div className="hover-box">
 														<div className="inner-hover">
@@ -110,6 +112,7 @@ function HeadingNews() {
 											src={post.featured_media_src_url}
 											alt=""
 											height="150"
+											className="border-none"
 										/>
 										<div className="hover-box">
 											<div className="inner-hover">

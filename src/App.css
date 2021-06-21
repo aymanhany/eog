@@ -148,7 +148,7 @@ header {
 }
 
 header form {
-  width: 46%;
+  width: 20%;
 }
 
 header form input {
@@ -347,7 +347,6 @@ header.active .nav-list-container {
   color: #222222 !important;
   font-size: 26px;
   text-transform: capitalize;
-  padding: 20px;
   letter-spacing: 2.5px;
   border: none;
 }
@@ -1179,8 +1178,8 @@ section.heading-news .heading-news-box .snd-size .image-post {
 /*ticker-news section*/
 
 section.ticker-news {
-  padding: 25px 0;
-  background-color: #222222;
+  padding: 5px 0;
+  background-color: #000;
 }
 
 section.ticker-news p {
@@ -3684,7 +3683,7 @@ ul.post-tags li:last-child {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   line-height: 20px;
-  margin: 0 0 10px;
+  margin: 0;
 }
 
 .standard-post .post-content h2 a {
@@ -3719,7 +3718,7 @@ ul.post-tags li:last-child {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   line-height: 20px;
-  margin: 0 0 10px;
+  margin: 0;
   font-size: 16px;
 }
 
@@ -3765,7 +3764,7 @@ ul.post-tags li:last-child {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   line-height: 20px;
-  margin: 0 0 10px;
+  margin: 0;
   font-size: 16px;
 }
 
@@ -3983,7 +3982,7 @@ ul.list-posts>li .post-content h2 {
   font-size: 13px;
   max-height: 40px;
   overflow: hidden;
-  margin-bottom: 7px;
+  margin-bottom: 0;
 }
 
 ul.list-posts>li .post-content h2 a {
@@ -7750,5 +7749,17 @@ form.mc4wp-form p {
 
 .TransformComponent-module_container__3NwNd, .TransformComponent-module_content__TZU5O {
   width: 100% !important;
-  border: 1px solid #000
+  cursor: pointer;
+}
+
+img {
+  border: 0.5px solid #000;
+}
+
+.border-none {
+  border: 0;
+}
+
+.standard-post, .standard-post2 {
+  margin-bottom: 15px;
 }

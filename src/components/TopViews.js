@@ -63,7 +63,7 @@ function TopViews() {
 						)}
 					</ul>
 				</Tab>
-				<Tab eventKey="News" title="News">
+				<Tab eventKey="News" title="Recent">
 					<ul className="list-posts">
 						{news ? (
 							news.map((post) => (

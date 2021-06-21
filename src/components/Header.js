@@ -48,7 +48,7 @@ function Header() {
 				>
 					<Navbar.Brand>
 						<Link className="navbar-brand" to="/">
-							<img src={logo} alt="" />
+							<img src={logo} alt="Logo" className="border-none" />
 						</Link>
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -56,6 +56,9 @@ function Header() {
 						<Nav className="ml-auto">
 							<li>
 								<Link to="/">Home</Link>
+							</li>
+							<li>
+								<Link to="/news">News</Link>
 							</li>
 							<li>
 								<NavDropdown
@@ -133,7 +136,7 @@ function Header() {
 				<div className="container-fluid">
 					<form
 						onSubmit={searchHandler}
-						className="d-flex ml-auto my-3"
+						className="d-flex ml-auto mb-3"
 					>
 						<input
 							type="text"
