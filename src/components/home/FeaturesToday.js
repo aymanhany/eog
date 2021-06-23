@@ -22,12 +22,24 @@ import SwiperArrows from '../SwiperArrows';
 import ViewMore from '../ViewMore';
 import Loading from '../Loading';
 
+import { setupCache } from 'axios-cache-adapter'
+
+// Create `axios-cache-adapter` instance
+const cache = setupCache({
+  maxAge: 15 * 60 * 1000
+})
+
+// Create `axios` instance passing the newly created `cache.adapter`
+const api = axios.create({
+  adapter: cache.adapter
+})
+
 SwiperCore.use([Navigation]);
 
 function FeaturesToday() {
 	const [features, setFeatures] = useState([]);
 	useEffect(async () => {
-		const resft = await axios.get(
+		const resft = await api.get(
 			'https://egyptoil-gas.com/wp-json/wp/v2/features?per_page=10&_embed'
 		);
 		setFeatures(resft.data);

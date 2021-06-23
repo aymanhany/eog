@@ -60,46 +60,41 @@ function Archive({ match }) {
 	const fetchData = async (page) => {
 		setLoading(true);
 		await axios
-			.get(`https://egyptoil-gas.com/wp-json/wp/v2/${match.params.type}`, {
-				params: {
-					per_page: 10,
-					page,
-				},
-			})
+			.get(`https://egyptoil-gas.com/wp-json/wp/v2/${match.params.type}?filter[${match.params.category_type}]=${match.params.category}&page=${page}`)
 			.then((res) => {
 				if (res.status === 400) {
 					setLoading(false);
 					setHasMore(false);
 					return;
 				}
-				let catData = [...res.data];
-				if (match?.params?.category) {
-					catData = [];
-					switch (match.params.type) {
-						case 'news':
-							catData = res.data.filter((item) =>
-								item.news_region.includes(parseInt(match?.params?.category))
-							);
-							break;
-						case 'publications':
-							catData = res.data.filter((item) =>
-								item.publications_category.includes(
-									parseInt(match?.params?.category)
-								)
-							);
-							break;
-						case 'events_coverage':
-							catData = res.data.filter((item) =>
-								item.events_category.includes(parseInt(match?.params?.category))
-							);
-							break;
-						default:
-							break;
-					}
-				}
-				setData((prev) => [...prev, ...catData]);
-				console.log(catData.length);
-				if (catData.length === 0) {
+				// let catData = [...res.data];
+				// if (match?.params?.category) {
+				// 	catData = [];
+				// 	switch (match.params.type) {
+				// 		case 'news':
+				// 			catData = res.data.filter((item) =>
+				// 				item.news_region.includes(parseInt(match?.params?.category))
+				// 			);
+				// 			break;
+				// 		case 'publications':
+				// 			catData = res.data.filter((item) =>
+				// 				item.publications_category.includes(
+				// 					parseInt(match?.params?.category)
+				// 				)
+				// 			);
+				// 			break;
+				// 		case 'events_coverage':
+				// 			catData = res.data.filter((item) =>
+				// 				item.events_category.includes(parseInt(match?.params?.category))
+				// 			);
+				// 			break;
+				// 		default:
+				// 			break;
+				// 	}
+				// }
+				setData((prev) => [...prev, ...res.data]);
+				console.log(data);
+				if (res.data.length === 0) {
 					console.log('false');
 					setHasMore(false);
 				} else {
@@ -178,7 +173,7 @@ function Archive({ match }) {
 													key={post.id}
 												>
 													<div className="post-gallery">
-													{
+														{
 															type === 'publications' ?
 																<img
 																	src={post.featured_media_src_url.replace("750x370", "210x295")}

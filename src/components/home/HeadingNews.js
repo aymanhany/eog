@@ -15,6 +15,20 @@ import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/swiper.scss';
 import Loading from '../Loading';
 
+
+import { setupCache } from 'axios-cache-adapter'
+
+// Create `axios-cache-adapter` instance
+const cache = setupCache({
+	maxAge: 15 * 60 * 1000
+  })
+  
+  // Create `axios` instance passing the newly created `cache.adapter`
+  const api = axios.create({
+	adapter: cache.adapter
+  })
+
+
 SwiperCore.use([Autoplay]);
 
 function HeadingNews() {
@@ -22,12 +36,12 @@ function HeadingNews() {
 	const [news, setNews] = useState([]);
 
 	useEffect(async () => {
-		const res = await axios.get(
+		const res = await api.get(
 			'https://egyptoil-gas.com/wp-json/wp/v2/news?per_page=5&_embed'
 		);
 		setNewsSlider(res.data);
 
-		const res1 = await axios.get(
+		const res1 = await api.get(
 			'https://egyptoil-gas.com/wp-json/wp/v2/news?per_page=8&page=2&_embed'
 		);
 		setNews(res1.data);

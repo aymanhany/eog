@@ -115,7 +115,9 @@ function News({ match }) {
                 <div className="row">
                   {cats.map((cat) => (
                     <div className="blockDiv col-sm-12">
-                      <h2 className="cat-title">{cat.slug}</h2>
+                      <div class="title-section">
+                        <h1><span><Link to={`archive/news/news_region/${cat.slug}`}>{cat.slug}</Link></span></h1>
+                      </div>
                       <div className="row">
                         {data.map((post, index) => {
                           if (

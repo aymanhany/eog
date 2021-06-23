@@ -17,7 +17,6 @@ import { Dropdown } from 'bootstrap';
 
 function Header() {
 	const [searchQuery, setSearchQuery] = useState('');
-	const [showDropDown, setShowDropDown] = useState(undefined);
 	const history = useHistory();
 	const searchHandler = (e) => {
 		e.preventDefault();
@@ -59,66 +58,6 @@ function Header() {
 							</li>
 							<li>
 								<Link to="/news">News</Link>
-							</li>
-							<li>
-								<NavDropdown
-									id="nav-dropdown-light-example"
-									title="News"
-									menuVariant="light"
-								>
-									<NavDropdown.Item href={`/archive/news/11221`}>
-										Egypt
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/news/11222`}>
-										International
-									</NavDropdown.Item>
-								</NavDropdown>
-							</li>
-							<li>
-								<NavDropdown
-									id="nav-dropdown-light-example"
-									title="Issues"
-									menuVariant="light"
-								>
-									<NavDropdown.Item href={`/archive/publications/11220`}>
-										Egypt oil & gas newspaper
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/publications/14266`}>
-										Supplements
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/publications/14090`}>
-										EOG/Ministry of Petroleum Publications
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/publications/19894`}>
-										EGYPS 2020
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/publications/12625`}>
-										EGYPS 2019
-									</NavDropdown.Item>
-								</NavDropdown>
-							</li>
-							<li>
-								<NavDropdown
-									id="nav-dropdown-light-example"
-									title="Events"
-									menuVariant="light"
-								>
-									<NavDropdown.Item href={`/archive/events_coverage/8377`}>
-										Conference
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/events_coverage/8825`}>
-										Conventions
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/events_coverage/8380`}>
-										Roundtables
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/events_coverage/8381`}>
-										Trainings
-									</NavDropdown.Item>
-									<NavDropdown.Item href={`/archive/events_coverage/8379`}>
-										workshops
-									</NavDropdown.Item>
-								</NavDropdown>
 							</li>
 							<li>
 								<Link to="/archive/reports">Reports</Link>

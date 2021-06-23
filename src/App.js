@@ -26,7 +26,7 @@ function App() {
 					<Route path="/single/:type/:id" component={Single} />
 					<Route exact path="/news" component={News} />
 					<Route exact path="/archive/:type" component={Archive} />
-					<Route exact path="/archive/:type/:category" component={Archive} />
+					<Route exact path="/archive/:type/:category_type/:category" component={Archive} />
 					<Route path="/search" component={Search} />
 				</Switch>
 				<Footer />
