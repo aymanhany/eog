@@ -136,11 +136,29 @@ function Single({ match }) {
                           ""
                         )}
                         {type === "maps" ? (
-                          <TransformWrapper>
-                            <TransformComponent>
-                              <img src={post.acf.svg_map} width="100%" />
-                            </TransformComponent>
-                          </TransformWrapper>
+                          <TransformWrapper
+        initialScale={1}
+        initialPositionX={200}
+        initialPositionY={100}
+      >
+        {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+          <React.Fragment>
+            <div className="tools">
+              <button onClick={zoomIn}>+</button>
+              <button onClick={zoomOut}>-</button>
+              <button onClick={resetTransform}>x</button>
+            </div>
+            <TransformComponent>
+              <img
+                            src={
+                              post.acf.svg_map
+                            }
+                            alt={post.title.rendered}
+                          />
+            </TransformComponent>
+          </React.Fragment>
+        )}
+      </TransformWrapper>
                         ) : (
                           ""
                         )}
