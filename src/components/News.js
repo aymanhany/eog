@@ -1,231 +1,237 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useHistory,
-  useLocation,
-  useRouteMatch,
-} from "react-router-dom";
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useParams,
+	useHistory,
+	useLocation,
+	useRouteMatch,
+} from 'react-router-dom';
 
-import SideBar from "./SideBar";
-import axios from "axios";
+import SideBar from './SideBar';
+import axios from 'axios';
 
-import Moment from "react-moment";
-import "moment-timezone";
-import TopViews from "./TopViews";
-import Loading from "./Loading";
-import { param } from "jquery";
+import Moment from 'react-moment';
+import 'moment-timezone';
+import TopViews from './TopViews';
+import Loading from './Loading';
+import { param } from 'jquery';
 
 function News({ match }) {
-  const [data, setData] = useState([]);
-  const [cats, setCats] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
-  const [pageNumber, setPageNumber] = useState(1);
-  const routerLocation = useLocation();
-  const lastEl = useRef();
+	const [data, setData] = useState([]);
+	const [cats, setCats] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [hasMore, setHasMore] = useState(true);
+	const [pageNumber, setPageNumber] = useState(1);
+	const routerLocation = useLocation();
+	const lastEl = useRef();
 
-  const type = match.params.type;
-  // const firstRender = useRef(false)
-  const isLastElVisible = useCallback(
-    (node) => {
-      if (loading) return;
-      if (lastEl.current) lastEl.current.disconnect();
-      lastEl.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prev) => prev + 1);
-        }
-      });
-      if (node) lastEl.current.observe(node);
-      if (!hasMore) setLoading(false);
-    },
-    [loading, hasMore]
-  );
+	const type = match.params.type;
+	// const firstRender = useRef(false)
+	const isLastElVisible = useCallback(
+		(node) => {
+			if (loading) return;
+			if (lastEl.current) lastEl.current.disconnect();
+			lastEl.current = new IntersectionObserver((entries) => {
+				if (entries[0].isIntersecting && hasMore) {
+					setPageNumber((prev) => prev + 1);
+				}
+			});
+			if (node) lastEl.current.observe(node);
+			if (!hasMore) setLoading(false);
+		},
+		[loading, hasMore]
+	);
 
-  useEffect(() => {
-    setPageNumber(1);
-    setData([]);
-    fetchData(1);
-    setLoading(true);
-    setHasMore(true);
-  }, [match.params]);
+	useEffect(() => {
+		setPageNumber(1);
+		setData([]);
+		fetchData(1);
+		console.log('fetching first');
+		setLoading(true);
+		setHasMore(true);
+	}, [match.params]);
 
-  useEffect(() => {
-    if (pageNumber === 1) return;
-    fetchData(pageNumber);
-  }, [pageNumber]);
+	useEffect(() => {
+		if (pageNumber === 1) return;
+		console.log('fetching pageNo');
+		fetchData(pageNumber);
+	}, [pageNumber]);
 
-  const fetchData = async (page) => {
-    setLoading(true);
-    await axios
-      .get("https://egyptoil-gas.com/wp-json/wp/v2/news_region")
-      .then((res) => {
-        setCats(res.data);
-        res.data.map((slug) => {
-          axios
-            .get(
-              `https://egyptoil-gas.com/wp-json/wp/v2/news?filter[news_region]=${slug.slug}`,
-              {
-                params: {
-                  per_page: 3,
-                  page,
-                },
-              }
-            )
-            .then((res) => {
-              if (res.status === 400) {
-                setLoading(false);
-                setHasMore(false);
-                return;
-              }
+	const fetchData = async (page) => {
+		setLoading(true);
+		console.log('fetching func');
+		await axios
+			.get('https://egyptoil-gas.com/wp-json/wp/v2/news_region')
+			.then((res) => {
+				setCats(res.data);
+				res.data.map((slug) => {
+					axios
+						.get(
+							`https://egyptoil-gas.com/wp-json/wp/v2/news?filter[news_region]=${slug.slug}`,
+							{
+								params: {
+									per_page: 3,
+									page,
+								},
+							}
+						)
+						.then((res) => {
+							if (res.status === 400) {
+								setLoading(false);
+								setHasMore(false);
+								return;
+							}
 
-              setData((prev) => [...prev, ...res.data]);
-              console.log(data);
+							setData((prev) => [...prev, ...res.data]);
+							console.log(data);
 
-              if (data.length === 0) {
-                console.log("false");
-                setHasMore(false);
-              } else {
-                console.log("true");
-                setHasMore(res.data.length > 0);
-              }
+							if (data.length === 0) {
+								console.log('false');
+								setHasMore(false);
+							} else {
+								console.log('true');
+								setHasMore(res.data.length > 0);
+							}
 
-              setLoading(false);
-            })
-            .catch((err) => {
-              if (err.response.status === 400) {
-                setLoading(false);
-                setHasMore(false);
-              }
-            });
-        });
-      });
-  };
-  return (
-    <section className="block-wrapper">
-      <div className="container">
-        {data.length > 0 && (
-          <div className="row">
-            <div className="col-sm-8">
-              {/* block content */}
-              <div className="block-content">
-                <div className="row">
-                  {cats.map((cat) => (
-                    <div className="blockDiv col-sm-12">
-                      <div class="title-section">
-                        <h1><span><Link to={`archive/news/news_region/${cat.slug}`}>{cat.slug}</Link></span></h1>
-                      </div>
-                      <div className="row">
-                        {data.map((post, index) => {
-                          if (
-                            data.length === index + 1 &&
-                            cat.id === post.news_region
-                          ) {
-                            return (
-                              <div
-                                className="news-post standard-post2 col-sm-6"
-                                key={`${post.id}-${post.slug}`}
-                                ref={isLastElVisible}
-                              >
-                                <div className="post-gallery">
-                                  <img
-                                    src={post.featured_media_src_url.replace(
-                                      "750x370",
-                                      "210x295"
-                                    )}
-                                    alt={post.title.rendered}
-                                  />
-                                </div>
-                                <div className="post-title">
-                                  <h2>
-                                    <Link
-                                      to={`/single/${match.params.type}/${post.id}`}
-                                    >
-                                      {post.title.rendered}
-                                    </Link>
-                                  </h2>
-                                  <ul className="post-tags">
-                                    <li>
-                                      <i className="fa fa-clock-o" />
-                                      <Moment format="YYYY/MM/DD">
-                                        {post.title.date}
-                                      </Moment>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            );
-                          } else {
-                            return (
-                              <div
-                                className="news-post standard-post2 col-sm-6"
-                                key={post.id}
-                              >
-                                <div className="post-gallery">
-                                  {type === "publications" ? (
-                                    <img
-                                      src={post.featured_media_src_url.replace(
-                                        "750x370",
-                                        "210x295"
-                                      )}
-                                      alt={post.title.rendered}
-                                    />
-                                  ) : (
-                                    <img
-                                      src={
-                                        post.featured_media_src_url
-                                          ? post.featured_media_src_url
-                                          : post.acf.svg_map
-                                      }
-                                      alt={post.title.rendered}
-                                    />
-                                  )}
-                                </div>
-                                <div className="post-title">
-                                  <h2>
-                                    <Link
-                                      to={`/single/${match.params.type}/${post.id}`}
-                                    >
-                                      {post.title.rendered}
-                                    </Link>
-                                  </h2>
-                                  <ul className="post-tags">
-                                    <li>
-                                      <i className="fa fa-clock-o" />
-                                      <Moment format="YYYY/MM/DD">
-                                        {post.title.date}
-                                      </Moment>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                            );
-                          }
-                        })}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {/* End block content */}
-            </div>
-            <div className="col-sm-4">
-              {/* sidebar */}
-              <SideBar />
-              {/* End sidebar */}
-            </div>
-          </div>
-        )}
-        {!loading && data.length === 0 && (
-          <h4 className="my-5 text-center">No Data found</h4>
-        )}
-        {loading && <Loading />}
-      </div>
-    </section>
-  );
+							setLoading(false);
+						})
+						.catch((err) => {
+							if (err.response.status === 400) {
+								setLoading(false);
+								setHasMore(false);
+							}
+						});
+				});
+			});
+	};
+	return (
+		<section className="block-wrapper">
+			<div className="container">
+				{data.length > 0 && (
+					<div className="row">
+						<div className="col-sm-8">
+							{/* block content */}
+							<div className="block-content">
+								<div className="row">
+									{cats.map((cat) => (
+										<div key={cat.id} className="blockDiv col-sm-12">
+											<div class="title-section">
+												<h1>
+													<span>
+														<Link to={`archive/news/news_region/${cat.slug}`}>
+															{cat.slug}
+														</Link>
+													</span>
+												</h1>
+											</div>
+											<div className="row">
+												{data.map(
+													(post, index) =>
+														data.length > 0 &&
+														// post.news_region.includes(parseInt(cat?.id))
+														post.news_region[0] === cat.id && (
+															<div
+																className="news-post standard-post2 col-sm-6"
+																key={`${post.id}-${post.slug}`}
+																ref={isLastElVisible}
+															>
+																<div className="post-gallery">
+																	<img
+																		src={post.featured_media_src_url.replace(
+																			'750x370',
+																			'210x295'
+																		)}
+																		alt={post.title.rendered}
+																	/>
+																</div>
+																<div className="post-title">
+																	<h2>
+																		<Link
+																			to={`/single/${match.params.type}/${post.id}`}
+																		>
+																			{post.title.rendered}
+																		</Link>
+																	</h2>
+																	<ul className="post-tags">
+																		<li>
+																			<i className="fa fa-clock-o" />
+																			<Moment format="YYYY/MM/DD">
+																				{post.title.date}
+																			</Moment>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+															// ) : (
+															// 	<div
+															// 		className="news-post standard-post2 col-sm-6"
+															// 		key={post.id}
+															// 	>
+															// 		<div className="post-gallery">
+															// 			{type === 'publications' ? (
+															// 				<img
+															// 					src={post.featured_media_src_url.replace(
+															// 						'750x370',
+															// 						'210x295'
+															// 					)}
+															// 					alt={post.title.rendered}
+															// 				/>
+															// 			) : (
+															// 				<img
+															// 					src={
+															// 						post.featured_media_src_url
+															// 							? post.featured_media_src_url
+															// 							: post.acf.svg_map
+															// 					}
+															// 					alt={post.title.rendered}
+															// 				/>
+															// 			)}
+															// 		</div>
+															// 		<div className="post-title">
+															// 			<h2>
+															// 				<Link
+															// 					to={`/single/${match.params.type}/${post.id}`}
+															// 				>
+															// 					{post.title.rendered}
+															// 				</Link>
+															// 			</h2>
+															// 			<ul className="post-tags">
+															// 				<li>
+															// 					<i className="fa fa-clock-o" />
+															// 					<Moment format="YYYY/MM/DD">
+															// 						{post.title.date}
+															// 					</Moment>
+															// 				</li>
+															// 			</ul>
+															// 		</div>
+															// 	</div>
+															// )
+														)
+												)}
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+							{/* End block content */}
+						</div>
+						<div className="col-sm-4">
+							{/* sidebar */}
+							<SideBar />
+							{/* End sidebar */}
+						</div>
+					</div>
+				)}
+				{!loading && data.length === 0 && (
+					<h4 className="my-5 text-center">No Data found</h4>
+				)}
+				{loading && <Loading />}
+			</div>
+		</section>
+	);
 }
 
 export default News;
