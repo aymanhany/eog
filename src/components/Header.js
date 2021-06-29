@@ -60,7 +60,16 @@ function Header() {
 								<Link to="/news">News</Link>
 							</li>
 							<li>
-								<Link to="/archive/reports">Reports</Link>
+								<Link to="/publications">Publications</Link>
+							</li>
+							<li>
+								<Link to="/archive/features">Features</Link>
+							</li>
+							<li>
+								<Link to="/events_coverage">Events Coverage</Link>
+							</li>
+							<li>
+								<Link to="/reports">Reports</Link>
 							</li>
 							<li>
 								<Link to="/archive/tv">TV</Link>

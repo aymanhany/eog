@@ -30,25 +30,10 @@ function News({ match }) {
 
 	const type = match.params.type;
 	// const firstRender = useRef(false)
-	const isLastElVisible = useCallback(
-		(node) => {
-			if (loading) return;
-			if (lastEl.current) lastEl.current.disconnect();
-			lastEl.current = new IntersectionObserver((entries) => {
-				if (entries[0].isIntersecting && hasMore) {
-					setPageNumber((prev) => prev + 1);
-				}
-			});
-			if (node) lastEl.current.observe(node);
-			if (!hasMore) setLoading(false);
-		},
-		[loading, hasMore]
-	);
 
 	useEffect(() => {
-		setPageNumber(1);
 		setData([]);
-		fetchData(1);
+		fetchData();
 		console.log('fetching first');
 		setLoading(true);
 		setHasMore(true);
@@ -60,20 +45,20 @@ function News({ match }) {
 	// 	fetchData(pageNumber);
 	// }, [pageNumber]);
 
-	const fetchData = async (page) => {
+	const fetchData = async () => {
 		setLoading(true);
 		console.log('fetching func');
 		await axios
-			.get('https://egyptoil-gas.com/wp-json/wp/v2/news_region')
+			.get('https://egyptoil-gas.com/wp-json/wp/v2/events_category')
 			.then((res) => {
 				setCats(res.data);
 				res.data.map((slug) => {
 					axios
 						.get(
-							`https://egyptoil-gas.com/wp-json/wp/v2/news?filter[news_region]=${slug.slug}`,
+							`https://egyptoil-gas.com/wp-json/wp/v2/events_coverage?filter[events_category]=${slug.slug}`,
 							{
 								params: {
-									per_page: 4
+									per_page: 2
 								},
 							}
 						)
@@ -120,7 +105,7 @@ function News({ match }) {
 											<div class="title-section">
 												<h1>
 													<span>
-														<Link to={`archive/news/news_region/${cat.slug}`}>
+														<Link to={`archive/events_coverage/events_category/${cat.slug}`}>
 															{cat.slug}
 														</Link>
 													</span>
@@ -130,11 +115,10 @@ function News({ match }) {
 												{data.map(
 													(post, index) =>
 														data.length > 0 &&
-														post.news_region[0] === cat.id && (
+														post.events_category[0] === cat.id && (
 															<div
 																className="news-post standard-post2 col-sm-6"
 																key={`${post.id}-${post.slug}`}
-																ref={isLastElVisible}
 															>
 																<div className="post-gallery">
 																	<img
@@ -145,7 +129,7 @@ function News({ match }) {
 																<div className="post-title">
 																	<h2>
 																		<Link
-																			to={`/single/${match.params.type}/${post.id}`}
+																			to={`/single/events_coverage/${post.id}`}
 																		>
 																			{post.title.rendered}
 																		</Link>
@@ -160,50 +144,6 @@ function News({ match }) {
 																	</ul>
 																</div>
 															</div>
-															// ) : (
-															// 	<div
-															// 		className="news-post standard-post2 col-sm-6"
-															// 		key={post.id}
-															// 	>
-															// 		<div className="post-gallery">
-															// 			{type === 'publications' ? (
-															// 				<img
-															// 					src={post.featured_media_src_url.replace(
-															// 						'750x370',
-															// 						'210x295'
-															// 					)}
-															// 					alt={post.title.rendered}
-															// 				/>
-															// 			) : (
-															// 				<img
-															// 					src={
-															// 						post.featured_media_src_url
-															// 							? post.featured_media_src_url
-															// 							: post.acf.svg_map
-															// 					}
-															// 					alt={post.title.rendered}
-															// 				/>
-															// 			)}
-															// 		</div>
-															// 		<div className="post-title">
-															// 			<h2>
-															// 				<Link
-															// 					to={`/single/${match.params.type}/${post.id}`}
-															// 				>
-															// 					{post.title.rendered}
-															// 				</Link>
-															// 			</h2>
-															// 			<ul className="post-tags">
-															// 				<li>
-															// 					<i className="fa fa-clock-o" />
-															// 					<Moment format="YYYY/MM/DD">
-															// 						{post.title.date}
-															// 					</Moment>
-															// 				</li>
-															// 			</ul>
-															// 		</div>
-															// 	</div>
-															// )
 														)
 												)}
 											</div>
