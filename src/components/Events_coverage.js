@@ -7,7 +7,7 @@ import {
 	useParams,
 	useHistory,
 	useLocation,
-	useRouteMatch,
+
 } from 'react-router-dom';
 
 import SideBar from './SideBar';
@@ -15,10 +15,10 @@ import axios from 'axios';
 
 import Moment from 'react-moment';
 import 'moment-timezone';
-import TopViews from './TopViews';
-import Loading from './Loading';
-import { param } from 'jquery';
 
+import Loading from './Loading';
+
+import renderHTML from "react-render-html";
 function News({ match }) {
 	const [data, setData] = useState([]);
 	const [cats, setCats] = useState([]);
@@ -68,9 +68,7 @@ function News({ match }) {
 								setHasMore(false);
 								return;
 							}
-
 							setData((prev) => [...prev, ...res.data]);
-							console.log(data);
 
 							if (data.length === 0) {
 								console.log('false');
@@ -89,7 +87,10 @@ function News({ match }) {
 							}
 						});
 				});
+
 			});
+
+
 	};
 	return (
 		<section className="block-wrapper">
@@ -100,8 +101,9 @@ function News({ match }) {
 							{/* block content */}
 							<div className="block-content">
 								<div className="row">
-									{cats.map((cat) => (
-										<div key={cat.id} className="blockDiv col-sm-12">
+									{console.log(data)}
+									{cats.map((cat, index) => (
+										<div key={cat.id} className={`blockDiv col-sm-12 ${index == 0 ? 'd-none' : ''} ${index == cats.length-1 ? 'd-none' : ''}`}>
 											<div class="title-section">
 												<h1>
 													<span>
@@ -123,7 +125,7 @@ function News({ match }) {
 																<div className="post-gallery">
 																	<img
 																		src={post.featured_media_src_url}
-																		alt={post.title.rendered}
+																		alt={renderHTML(post.title.rendered)}
 																	/>
 																</div>
 																<div className="post-title">
@@ -131,14 +133,14 @@ function News({ match }) {
 																		<Link
 																			to={`/single/events_coverage/${post.id}`}
 																		>
-																			{post.title.rendered}
+																			{renderHTML(post.title.rendered)}
 																		</Link>
 																	</h2>
 																	<ul className="post-tags">
 																		<li>
 																			<i className="fa fa-clock-o" />
 																			<Moment format="YYYY/MM/DD">
-																				{post.title.date}
+																				{post.date}
 																			</Moment>
 																		</li>
 																	</ul>

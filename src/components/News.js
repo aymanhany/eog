@@ -154,7 +154,7 @@ function News({ match }) {
 																		<li>
 																			<i className="fa fa-clock-o" />
 																			<Moment format="YYYY/MM/DD">
-																				{post.title.date}
+																				{post.date}
 																			</Moment>
 																		</li>
 																	</ul>
@@ -197,7 +197,7 @@ function News({ match }) {
 															// 				<li>
 															// 					<i className="fa fa-clock-o" />
 															// 					<Moment format="YYYY/MM/DD">
-															// 						{post.title.date}
+															// 						{post.date}
 															// 					</Moment>
 															// 				</li>
 															// 			</ul>

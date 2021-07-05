@@ -66,7 +66,7 @@ function LatestArticle() {
 													<li>
 														<i className="fa fa-clock-o" />
 														<Moment format="YYYY/MM/DD">
-															{post.title.date}
+															{post.date}
 														</Moment>
 													</li>
 													{/* <li><i className="fa fa-user" />by <a href="#">John Doe</a></li>

@@ -119,7 +119,7 @@ function SideBar() {
 						<h2>Subscribe to Newsletter</h2>
 						<input type="email" name="sumbscribe" id="subscribe" placeholder="Email" />
 						<button id="submit-subscribe"> <i className="fa fa-arrow-circle-right"></i> </button>
-						<p>Get all latest content delivered to your email a few times a month.</p>
+						<p>Subscribe to get the latest news right to your inbox</p>
 					</form>
 				</div>
 			</aside>

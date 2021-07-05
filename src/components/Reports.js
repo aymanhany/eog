@@ -117,7 +117,7 @@ function Reports({ match }) {
                   {cats.map((cat) => (
                     <div className="blockDiv col-sm-12">
                       <div class="title-section">
-                        <h1><span><Link to={`archive/reports/reports_category/${cat.slug}`}>{cat.slug}{cat.id}</Link></span></h1>
+                        <h1><span><Link to={`archive/reports/reports_category/${cat.slug}`}>{cat.slug}</Link></span></h1>
                       </div>
                       <div className="row">
                         {data.map(
@@ -138,7 +138,7 @@ function Reports({ match }) {
                                 <div className="post-title">
                                   <h2>
                                     <Link
-                                      to={`/single/features/${post.id}`}
+                                      to={`/single/reports/${post.id}`}
                                     >
                                       {post.title.rendered}
                                     </Link>
@@ -147,7 +147,7 @@ function Reports({ match }) {
                                     <li>
                                       <i className="fa fa-clock-o" />
                                       <Moment format="YYYY/MM/DD">
-                                        {post.title.date}
+                                        {post.date}
                                       </Moment>
                                     </li>
                                   </ul>

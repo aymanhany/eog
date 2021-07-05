@@ -82,11 +82,11 @@ function Single({ match }) {
                   {/* single-post box */}
                   <div className="single-post-box">
                     <div className="title-post">
-                      <h1>{post.title.rendered}</h1>
+                      <h1>{renderHTML(post.title.rendered)}</h1>
                       <ul className="post-tags">
                         <li>
                           <i className="fa fa-clock-o" />
-                          <Moment format="YYYY/MM/DD">{post.title.date}</Moment>
+                          <Moment format="YYYY/MM/DD">{post.date}</Moment>
                         </li>
                         <li>
                           <i className="fa fa-user" />
@@ -97,68 +97,50 @@ function Single({ match }) {
                             </span>
                           )}
                         </li>
-                        {/* <li><Link href="#"><i className="fa fa-comments-o" /><span>0</span></Link></li>
-                                                <li><i className="fa fa-eye" />872</li> */}
                       </ul>
                     </div>
-                    {/* <div className="share-post-box">
-                                            <ul className="share-box">
-                                                <li><i className="fa fa-share-alt" /><span>Share Post</span></li>
-                                                <li><Link className="facebook" href="#"><i className="fa fa-facebook" /><span>Share on Facebook</span></Link></li>
-                                                <li><Link className="twitter" href="#"><i className="fa fa-twitter" /><span>Share on Twitter</span></Link></li>
-                                                <li><Link className="google" href="#"><i className="fa fa-google-plus" /><span /></Link></li>
-                                                <li><Link className="linkedin" href="#"><i className="fa fa-linkedin" /><span /></Link></li>
-                                            </ul>
-                                        </div> */}
+
                     <div className="post-gallery">
-                      {/* <img
-												src={
-													post.featured_media_src_url
-														? post.featured_media_src_url
-														: post.acf.svg_map
-												}
-												alt={post.title.rendered}
-											/> */}
                       <div className="item news-post video-post" key={post.id}>
                         {type !== "tv" &&
-                        type !== "reports" &&
-                        type !== "publications" &&
-                        type !== "maps" ? (
+                          type !== "reports" &&
+                          type !== "publications" &&
+                          type !== "maps" ? (
                           <img
                             src={
                               post.featured_media_src_url
                                 ? post.featured_media_src_url
                                 : ""
                             }
-                            alt={post.title.rendered}
+                            alt={renderHTML(post.title.rendered)}
                           />
                         ) : (
                           ""
                         )}
                         {type === "maps" ? (
                           <TransformWrapper
-        initialScale={1}
-        initialPositionX={200}
-        initialPositionY={100}
-      >
-        {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
-          <React.Fragment>
-            <div className="tools">
-              <button onClick={zoomIn}>+</button>
-              <button onClick={zoomOut}>-</button>
-              <button onClick={resetTransform}>x</button>
-            </div>
-            <TransformComponent>
-              <img
-                            src={
-                              post.acf.svg_map
-                            }
-                            alt={post.title.rendered}
-                          />
-            </TransformComponent>
-          </React.Fragment>
-        )}
-      </TransformWrapper>
+                            initialScale={1}
+                            initialPositionX={200}
+                            initialPositionY={100}
+                          >
+                            {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+                              <React.Fragment>
+                                <div className="tools">
+                                  <button className="map-btn" onClick={zoomIn}>+</button>
+                                  <button className="map-btn" onClick={zoomOut}>-</button>
+                                  <button className="map-btn" onClick={resetTransform}>x</button>
+                                </div>
+                                <TransformComponent>
+                                  <img
+                                    src={
+                                      post.acf.svg_map
+                                    }
+                                    alt={renderHTML(post.title.rendered)}
+                                  />
+                                </TransformComponent>
+                              </React.Fragment>
+                            )}
+                          </TransformWrapper>
                         ) : (
                           ""
                         )}
@@ -186,26 +168,17 @@ function Single({ match }) {
                       {type == "reports"
                         ? renderHTML(post.acf.issuu_code)
                         : type == "publications"
-                        ? renderHTML(post.acf.issuu_code)
-                        : ""}
+                          ? renderHTML(post.acf.issuu_code)
+                          : ""}
 
                       {type == "reports" || type == "publications" ? (
-                        <a href={post.acf.pdf.url} className="d-block my-3">
+                        <a href={post.acf.pdf.url} className="d-block my-3" target="_blank">
                           Download File
                         </a>
                       ) : (
                         ""
                       )}
                     </div>
-                    {/* <div className="post-tags-box">
-                                            <ul className="tags-box">
-                                                <li><i className="fa fa-tags" /><span>Tags:</span></li>
-                                                <li><Link href="#">News</Link></li>
-                                                <li><Link href="#">Fashion</Link></li>
-                                                <li><Link href="#">Politics</Link></li>
-                                                <li><Link href="#">Sport</Link></li>
-                                            </ul>
-                                        </div> */}
 
                     {/* carousel box */}
                     <div className="carousel-box owl-wrapper">
@@ -233,28 +206,26 @@ function Single({ match }) {
                           <SwiperSlide key={post.id}>
                             <div className="item news-post image-post3">
                               <Link to={`/single/news/${post.id}`}>
-                                <img
+                                <img 
+                                  style={{"minHeight": "200px"}}
                                   src={
                                     post.featured_media_src_url
-                                      ? post.featured_media_src_url.replace(
-                                          "750x370",
-                                          "210x295"
-                                        )
+                                      ? post.featured_media_src_url
                                       : post.acf.svg_map
                                   }
-                                  alt={post.title.rendered}
+                                  alt={renderHTML(post.title.rendered)}
                                 />
                               </Link>
                               <div className="hover-box">
                                 <h2>
                                   <Link to={`/single/news/${post.id}`}>
-                                    {post.title.rendered}
+                                    {renderHTML(post.title.rendered)}
                                   </Link>
                                 </h2>
                                 <ul className="post-tags">
                                   <li>
                                     <i className="fa fa-clock-o" />
-                                    <Moment format="DD-MM-YYY">
+                                    <Moment format="DD-MM-Y">
                                       {post.date}
                                     </Moment>
                                   </li>

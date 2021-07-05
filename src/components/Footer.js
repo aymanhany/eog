@@ -13,7 +13,7 @@ function Footer() {
                             <div className="col-md-12">
                                 <div className="widget text-widget">
                                     <h1>About</h1>
-                                    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. </p>
+                                    <p>Egypt Oil & Gas is the only Egypt-based and focused oil and gas information provider. We have served as the most reliable source of information for the Egyptian petroleum sector for the past 14 years, offering timely, consistently accurate news, data and analysis.</p>
                                 </div>
                             </div>
                         </div>
@@ -21,12 +21,13 @@ function Footer() {
                     <div className="footer-last-line">
                         <div className="row">
                             <div className="col-md-6">
-                                <p>© COPYRIGHT 2021 Egypt oil gas</p>
+                                <p>© COPYRIGHT 2017 Egypt oil gas</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </footer>
+
             {/* End footer */}
         </div>
     )

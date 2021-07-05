@@ -52,7 +52,7 @@ function TopViews() {
 										<ul className="post-tags">
 											<li>
 												<i className="fa fa-clock-o" />
-												<Moment format="YYYY/MM/DD">{post.title.date}</Moment>
+												<Moment format="YYYY/MM/DD">{post.date}</Moment>
 											</li>
 										</ul>
 									</div>
@@ -78,7 +78,7 @@ function TopViews() {
 										<ul className="post-tags">
 											<li>
 												<i className="fa fa-clock-o" />
-												<Moment format="YYYY/MM/DD">{post.title.date}</Moment>
+												<Moment format="YYYY/MM/DD">{post.date}</Moment>
 											</li>
 										</ul>
 									</div>

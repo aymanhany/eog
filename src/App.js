@@ -18,6 +18,7 @@ import News from './components/News';
 import Reports from './components/Reports';
 import Issues from './components/Issues';
 import Events_coverage from './components/Events_coverage';
+import SinglePage from './components/SinglePage';
 
 function App() {
 	return (
@@ -27,6 +28,7 @@ function App() {
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route path="/single/:type/:id" component={Single} />
+					<Route path="/page/:id" component={SinglePage} />
 					<Route exact path="/news" component={News} />
 					<Route exact path="/reports" component={Reports} />
 					<Route exact path="/events_coverage" component={Events_coverage} />

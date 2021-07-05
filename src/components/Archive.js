@@ -124,7 +124,7 @@ function Archive({ match }) {
 										if (data.length === index + 1) {
 											return (
 												<div
-													className="news-post standard-post2 col-sm-6"
+													className={`news-post standard-post2 ${type === 'publications' ? 'col-sm-4' : 'col-sm-6'} `}
 													key={`${post.id}-${post.slug}`}
 													ref={isLastElVisible}
 												>
@@ -159,7 +159,7 @@ function Archive({ match }) {
 															<li>
 																<i className="fa fa-clock-o" />
 																<Moment format="YYYY/MM/DD">
-																	{post.title.date}
+																	{post.date}
 																</Moment>
 															</li>
 														</ul>
@@ -169,7 +169,7 @@ function Archive({ match }) {
 										} else {
 											return (
 												<div
-													className="news-post standard-post2 col-sm-6"
+													className={`news-post standard-post2 ${type === 'publications' ? 'col-sm-4' : 'col-sm-6'} `}
 													key={post.id}
 												>
 													<div className="post-gallery">
@@ -202,7 +202,7 @@ function Archive({ match }) {
 															<li>
 																<i className="fa fa-clock-o" />
 																<Moment format="YYYY/MM/DD">
-																	{post.title.date}
+																	{post.date}
 																</Moment>
 															</li>
 														</ul>

@@ -29,6 +29,8 @@ const cache = setupCache({
   maxAge: 15 * 60 * 1000
 })
 
+const random = Math.floor(Math.random()*99999999999);
+
 // Create `axios` instance passing the newly created `cache.adapter`
 const api = axios.create({
   adapter: cache.adapter
@@ -54,6 +56,7 @@ function FeaturesToday() {
 			================================================== */}
 			{features.length > 0 ? (
 				<section className="features-today">
+					
 					<div className="container">
 						<div className="title-section">
 							<h1>
