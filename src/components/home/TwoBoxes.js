@@ -70,7 +70,7 @@ function TwoBoxes() {
         <section className="block-wrapper">
           <div className="container">
             <div className="row">
-              <div className="col-sm-8">
+              <div className="col-md-8 col-sm-12">
                 {/* block content */}
                 <div className="block-content">
                   {/* carousel box */}
@@ -336,7 +336,7 @@ function TwoBoxes() {
                 </div>
                 {/* End block content */}
               </div>
-              <div className="col-sm-4">
+              <div className="col-md-4 col-sm-12">
                 {/* sidebar */}
                 <SideBar />
               </div>

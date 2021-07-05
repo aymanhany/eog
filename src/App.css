@@ -7797,3 +7797,25 @@ img {
   margin: 2px;
   font-size: 20px;
 }
+
+@media screen and (max-width: 768px) {
+
+  .featuredVideo_videoSlider__9ZrAb {
+    display: block !important;
+  }
+
+  .featuredVideo_thumbnail__1wxS9 {
+    flex-direction: column;
+  }
+  .featuredVideo_thumbnail__1wxS9 h2 {
+    font-size: 12px !important;
+  }
+
+  ul.posts-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  header form {
+    width: 50%;
+  }
+}

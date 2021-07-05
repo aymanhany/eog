@@ -72,8 +72,6 @@ function FeaturesToday() {
 						</div>
 						<div className="features-today-box owl-wrapper">
 							<Swiper
-								slidesPerView={4}
-								spaceBetween={15}
 								onInit={(swiper) => {
 									swiper.params.navigation.prevEl = featuresPrevRef.current;
 									swiper.params.navigation.nextEl = featuresNextvRef.current;
