@@ -23,7 +23,6 @@ function TwoBoxes() {
   const [events, setEvents] = useState([]);
   const [reports, setReports] = useState([]);
   const [publications, setPublications] = useState([]);
-  const [tv, setTv] = useState([]);
 
   useEffect(async () => {
     await axios
@@ -49,9 +48,6 @@ function TwoBoxes() {
         setPublications(res.data);
       });
   }, []);
-
-  const worldPrev = React.useRef(null);
-  const worldNext = React.useRef(null);
 
   const galleryPrev = React.useRef(null);
   const galleryNext = React.useRef(null);
@@ -150,7 +146,7 @@ function TwoBoxes() {
                     </Swiper>
                     <h5 className="text-right my-2 mx-1">
                       <span>
-                        <Link to="/archive/publications">More &#8594;</Link>
+                        <Link to="/publications">More &#8594;</Link>
                       </span>
                     </h5>
                   </div>
@@ -250,7 +246,7 @@ function TwoBoxes() {
                           <img
                             src="https://ads.egyptoil-gas.com/www/images/54a8fb2810a50256c62e6f11e122f887.jpg"
                             width="100%"
-                            className="mb-3 mt-3"
+                            className="mb-5 mt-3"
                           />
                         </div>
                       </div>
@@ -331,7 +327,7 @@ function TwoBoxes() {
                   <img
                     src="https://ads.egyptoil-gas.com/www/images/54a8fb2810a50256c62e6f11e122f887.jpg"
                     width="100%"
-                    className="mb-5"
+                    className="mb-3 mt-3"
                   />
                 </div>
                 {/* End block content */}

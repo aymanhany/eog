@@ -51,7 +51,7 @@ function FeaturedVideo() {
 					<div className="container">
 						<div className="title-section white d-flex space-between">
 							<h1>
-								<span>Featured Video</span>
+								<span>TV</span>
 							</h1>
 							{/* <SwiperArrows prev={videoPrevRef} next={videoNextRef} /> */}
 						</div>

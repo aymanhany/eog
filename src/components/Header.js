@@ -77,16 +77,16 @@ function Header() {
 								<Link to="/archive/features">Features</Link>
 							</li>
 							<li>
-								<Link to="/events_coverage">Events Coverage</Link>
+								<Link to="/events">Events</Link>
 							</li>
 							<li>
 								<Link to="/reports">Reports</Link>
 							</li>
 							<li>
-								<Link to="/archive/tv">TV</Link>
+								<Link to="/tv">TV</Link>
 							</li>
 							<li>
-								<Link to="/archive/maps">Concession Map</Link>
+								<Link to="/archive/maps">Concession Maps</Link>
 							</li>
 						</Nav>
 					</Navbar.Collapse>

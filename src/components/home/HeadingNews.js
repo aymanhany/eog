@@ -21,12 +21,12 @@ import { setupCache } from 'axios-cache-adapter'
 // Create `axios-cache-adapter` instance
 const cache = setupCache({
 	maxAge: 15 * 60 * 1000
-  })
-  
-  // Create `axios` instance passing the newly created `cache.adapter`
-  const api = axios.create({
+})
+
+// Create `axios` instance passing the newly created `cache.adapter`
+const api = axios.create({
 	adapter: cache.adapter
-  })
+})
 
 
 SwiperCore.use([Autoplay]);
@@ -59,12 +59,14 @@ function HeadingNews() {
 							if (index === 0)
 								return (
 									<div className="news-post image-post" key={post.id}>
-										<img
-											src={post.featured_media_src_url}
-											alt=""
-											height="150"
-											className="border-none"
-										/>
+										<Link to={`/single/news/${post.id}`}>
+											<img
+												src={post.featured_media_src_url}
+												alt=""
+												height="150"
+												className="border-none"
+											/>
+										</Link>
 										<div className="hover-box">
 											<div className="inner-hover">
 												<h2>
@@ -92,12 +94,14 @@ function HeadingNews() {
 										return (
 											<SwiperSlide key={post.id}>
 												<div className="news-post image-post">
-													<img
-														src={post.featured_media_src_url}
-														alt=""
-														height="300"
-														className="border-none"
-													/>
+													<Link to={`/single/news/${post.id}`}>
+														<img
+															src={post.featured_media_src_url}
+															alt=""
+															height="300"
+															className="border-none"
+														/>
+													</Link>
 													<div className="hover-box">
 														<div className="inner-hover">
 															<h2>
@@ -122,12 +126,14 @@ function HeadingNews() {
 							if (index > 0) {
 								return (
 									<div className="news-post image-post" key={post.id}>
-										<img
-											src={post.featured_media_src_url}
-											alt=""
-											height="150"
-											className="border-none"
-										/>
+										<Link to={`/single/news/${post.id}`}>
+											<img
+												src={post.featured_media_src_url}
+												alt=""
+												height="150"
+												className="border-none"
+											/>
+										</Link>
 										<div className="hover-box">
 											<div className="inner-hover">
 												<h2>

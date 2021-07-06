@@ -137,10 +137,14 @@ function News({ match }) {
 																ref={isLastElVisible}
 															>
 																<div className="post-gallery">
-																	<img
-																		src={post.featured_media_src_url}
-																		alt={post.title.rendered}
-																	/>
+																	<Link
+																		to={`/single/${match.params.type}/${post.id}`}
+																	>
+																		<img
+																			src={post.featured_media_src_url}
+																			alt={post.title.rendered}
+																		/>
+																	</Link>
 																</div>
 																<div className="post-title">
 																	<h2>
@@ -160,53 +164,14 @@ function News({ match }) {
 																	</ul>
 																</div>
 															</div>
-															// ) : (
-															// 	<div
-															// 		className="news-post standard-post2 col-sm-6"
-															// 		key={post.id}
-															// 	>
-															// 		<div className="post-gallery">
-															// 			{type === 'publications' ? (
-															// 				<img
-															// 					src={post.featured_media_src_url.replace(
-															// 						'750x370',
-															// 						'210x295'
-															// 					)}
-															// 					alt={post.title.rendered}
-															// 				/>
-															// 			) : (
-															// 				<img
-															// 					src={
-															// 						post.featured_media_src_url
-															// 							? post.featured_media_src_url
-															// 							: post.acf.svg_map
-															// 					}
-															// 					alt={post.title.rendered}
-															// 				/>
-															// 			)}
-															// 		</div>
-															// 		<div className="post-title">
-															// 			<h2>
-															// 				<Link
-															// 					to={`/single/${match.params.type}/${post.id}`}
-															// 				>
-															// 					{post.title.rendered}
-															// 				</Link>
-															// 			</h2>
-															// 			<ul className="post-tags">
-															// 				<li>
-															// 					<i className="fa fa-clock-o" />
-															// 					<Moment format="YYYY/MM/DD">
-															// 						{post.date}
-															// 					</Moment>
-															// 				</li>
-															// 			</ul>
-															// 		</div>
-															// 	</div>
-															// )
 														)
 												)}
 											</div>
+											<h5 className="text-right mb-3">
+												<span>
+													<Link to={`archive/news/news_region/${cat.slug}`}>More &#8594;</Link>
+												</span>
+											</h5>
 										</div>
 									))}
 								</div>

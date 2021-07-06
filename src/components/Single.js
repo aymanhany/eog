@@ -32,6 +32,7 @@ function Single({ match }) {
 
   const [post, setPost] = useState();
   const [like, setLike] = useState();
+  const [tags, setTags] = useState();
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -54,13 +55,25 @@ function Single({ match }) {
       .get(
         `https://egyptoil-gas.com/wp-json/wp/v2/${match.params.type}/${match.params.id}?_embed`
       )
-      .then((res) => setPost(res.data));
+      .then(
+        (res) => {
+          setPost(res.data);
+          axios
+            .get(
+              `https://egyptoil-gas.com/wp-json/wp/v2/tags?post=${res.data.id}`
+            )
+            .then((res) => setTags(res.data));
+        })
+
 
     await axios
       .get(
         `https://egyptoil-gas.com/wp-json/wp/v2/${match.params.type}?per_page=5`
       )
       .then((res) => setLike(res.data));
+
+
+
   }, [match.params]);
 
   function onDocumentLoadSuccess({ numPages }) {
@@ -72,7 +85,7 @@ function Single({ match }) {
       <div>
         {/* block-wrapper-section
                 ================================================== */}
-        {console.log(post)}
+        {console.log(tags)}
         <section className="block-wrapper">
           <div className="container">
             <div className="row">
@@ -89,12 +102,15 @@ function Single({ match }) {
                           <Moment format="YYYY/MM/DD">{post.date}</Moment>
                         </li>
                         <li>
-                          <i className="fa fa-user" />
                           {post?._embedded?.author && (
-                            <span>
-                              {" "}
-                              "by" {post?._embedded?.author[0]?.name}{" "}
-                            </span>
+                            <>
+                              <i className="fa fa-user" />
+
+                              <span>
+                                {" "}
+                                "by" {post?._embedded?.author[0]?.name}{" "}
+                              </span>
+                            </>
                           )}
                         </li>
                       </ul>
@@ -165,6 +181,20 @@ function Single({ match }) {
                     </div>
                     <div className="post-content">
                       {post.content && renderHTML(post.content.rendered)}
+                      {type == 'news' && (
+                        <>
+                          <div class="title-section"><h2><span>Popular tags</span></h2></div>
+                          <div class="tagcloud">
+                            {
+                              tags.map((tag) => (
+                                <Link to={`/archive/news/tag/${tag.slug}`} class="tag-link-25 tag-link-position-1">{tag.name}</Link>
+                              ))
+
+                            }
+
+                          </div>
+                        </>
+                      )}
                       {type == "reports"
                         ? renderHTML(post.acf.issuu_code)
                         : type == "publications"
@@ -172,7 +202,7 @@ function Single({ match }) {
                           : ""}
 
                       {type == "reports" || type == "publications" ? (
-                        <a href={post.acf.pdf.url} className="d-block my-3" target="_blank">
+                        <a href={post.acf.pdf} className="d-block my-3" target="_blank" download>
                           Download File
                         </a>
                       ) : (
@@ -193,7 +223,7 @@ function Single({ match }) {
                         />
                       </div>
                       <Swiper
-                        slidesPerView={3}
+                        slidesPerView={2}
                         spaceBetween={5}
                         onInit={(swiper) => {
                           swiper.params.navigation.prevEl = likePrevRef.current;
@@ -206,8 +236,8 @@ function Single({ match }) {
                           <SwiperSlide key={post.id}>
                             <div className="item news-post image-post3">
                               <Link to={`/single/news/${post.id}`}>
-                                <img 
-                                  style={{"minHeight": "200px"}}
+                                <img
+                                  // style={{ "minHeight": "200px" }}
                                   src={
                                     post.featured_media_src_url
                                       ? post.featured_media_src_url

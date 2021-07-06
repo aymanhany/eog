@@ -108,10 +108,10 @@ function Issues({ match }) {
               {/* block content */}
               <div className="block-content">
                 <div className="row">
-                  {cats.map((cat) => (
+                  {cats.map((cat, index) => (
                     <div className="blockDiv col-sm-12">
                       <div class="title-section">
-                        <h1><span><Link to={`archive/publications/publications_category/${cat.slug}`}>{cat.slug}</Link></span></h1>
+                        <h1 className={index == 0 ? '' : ' mt-3'}><span><Link to={`archive/publications/publications_category/${cat.slug}`}>{cat.slug.replaceAll('-', ' ')}</Link></span></h1>
                       </div>
                       <div className="row">
                         {data.map(
@@ -124,13 +124,17 @@ function Issues({ match }) {
                                 ref={isLastElVisible}
                               >
                                 <div className="post-gallery">
-                                  <img
-                                    src={post.featured_media_src_url.replace(
-                                      "750x370",
-                                      "210x295"
-                                    )}
-                                    alt={post.title.rendered}
-                                  />
+                                  <Link
+                                    to={`/single/publications/${post.id}`}
+                                  >
+                                    <img
+                                      src={post.featured_media_src_url.replace(
+                                        "750x370",
+                                        "210x295"
+                                      )}
+                                      alt={post.title.rendered}
+                                    />
+                                  </Link>
                                 </div>
                                 <div className="post-title">
                                   <h2>
@@ -153,6 +157,11 @@ function Issues({ match }) {
                             )
                         )}
                       </div>
+                      <h5 className="text-right mb-3">
+                        <span>
+                          <Link to={`archive/publications/publications_category/${cat.slug}`}>More &#8594;</Link>
+                        </span>
+                      </h5>
                     </div>
                   ))}
                 </div>

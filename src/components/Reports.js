@@ -54,10 +54,10 @@ function Reports({ match }) {
     setHasMore(true);
   }, [match.params]);
 
-  useEffect(() => {
-    if (pageNumber === 1) return;
-    fetchData(pageNumber);
-  }, [pageNumber]);
+  // useEffect(() => {
+  //   if (pageNumber === 1) return;
+  //   fetchData(pageNumber);
+  // }, [pageNumber]);
 
   const fetchData = async (page) => {
     setLoading(true);
@@ -130,10 +130,14 @@ function Reports({ match }) {
                                 ref={isLastElVisible}
                               >
                                 <div className="post-gallery">
-                                  <img
-                                    src={post.featured_media_src_url}
-                                    alt={post.title.rendered}
-                                  />
+                                  <Link
+                                    to={`/single/reports/${post.id}`}
+                                  >
+                                    <img
+                                      src={post.featured_media_src_url}
+                                      alt={post.title.rendered}
+                                    />
+                                  </Link>
                                 </div>
                                 <div className="post-title">
                                   <h2>
@@ -156,6 +160,11 @@ function Reports({ match }) {
                             )
                         )}
                       </div>
+                      <h5 className="text-right mb-3">
+                        <span>
+                          <Link to={`archive/reports/reports_category/${cat.slug}`}>More &#8594;</Link>
+                        </span>
+                      </h5>
                     </div>
                   ))}
                 </div>

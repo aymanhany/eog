@@ -26,14 +26,14 @@ import { setupCache } from 'axios-cache-adapter'
 
 // Create `axios-cache-adapter` instance
 const cache = setupCache({
-  maxAge: 15 * 60 * 1000
+	maxAge: 15 * 60 * 1000
 })
 
-const random = Math.floor(Math.random()*99999999999);
+const random = Math.floor(Math.random() * 99999999999);
 
 // Create `axios` instance passing the newly created `cache.adapter`
 const api = axios.create({
-  adapter: cache.adapter
+	adapter: cache.adapter
 })
 
 SwiperCore.use([Navigation]);
@@ -56,7 +56,7 @@ function FeaturesToday() {
 			================================================== */}
 			{features.length > 0 ? (
 				<section className="features-today">
-					
+
 					<div className="container">
 						<div className="title-section">
 							<h1>
@@ -104,10 +104,12 @@ function FeaturesToday() {
 									<SwiperSlide key={post.id}>
 										<div className="item news-post standard-post">
 											<div className="post-gallery">
-												<img
-													src={post.featured_media_src_url}
-													alt={post.title.rendered}
-												/>
+												<Link to={`/single/features/${post.id}`}>
+													<img
+														src={post.featured_media_src_url}
+														alt={post.title.rendered}
+													/>
+												</Link>
 												{/* <a className="category-post world" href="world.html">Music</a> */}
 											</div>
 											<div className="post-content">

@@ -3,6 +3,17 @@ import React, { useEffect, useState } from 'react';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link,
+	useParams,
+	useHistory,
+	useLocation,
+	useRouteMatch,
+} from 'react-router-dom';
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation } from 'swiper';
@@ -43,6 +54,7 @@ SwiperCore.use([Navigation]);
 
 function SideBar() {
 	const [news, setNews] = useState([]);
+	const [tags, setTags] = useState([]);
 	const [tableDataState, setTableDataState] = useState(tableData);
 	const [lastMod, setLastMod] = useState('Last Modified May 11, 2021');
 	useEffect(async () => {
@@ -60,33 +72,34 @@ function SideBar() {
 		<div className="sidebar">
 			<div className="widget social-widget">
 				<div className="title-section">
+					{console.log(tags)}
 					<h1>
 						<span>Stay Connected</span>
 					</h1>
 				</div>
 				<ul className="social-icons d-flex justify-content-between p-1">
 					<li>
-						<a href="https://www.linkedin.com/company/egypt-oil-&-gas/"target="_blank" className="facebook">
+						<a href="https://www.linkedin.com/company/egypt-oil-&-gas/" target="_blank" className="facebook">
 							<i className="fa fa-2x fa-linkedin" />
 						</a>
 					</li>
 					<li>
-						<a href="https://www.facebook.com/EgyptOilandGas"target="_blank" className="facebook">
+						<a href="https://www.facebook.com/EgyptOilandGas" target="_blank" className="facebook">
 							<i className="fa fa-2x fa-facebook" />
 						</a>
 					</li>
 					<li>
-						<a href="https://twitter.com/EgyptOilandGas"target="_blank" className="twitter">
+						<a href="https://twitter.com/EgyptOilandGas" target="_blank" className="twitter">
 							<i className="fa fa-2x fa-twitter" />
 						</a>
 					</li>
 					<li>
-						<a href="https://youtube.com/user/EgyptOilandGas"target="_blank" className="google">
+						<a href="https://youtube.com/user/EgyptOilandGas" target="_blank" className="google">
 							<i className="fa fa-2x fa-youtube" />
 						</a>
 					</li>
 					<li>
-						<a href="https://www.instagram.com/egyptoilandgas/"target="_blank" className="google">
+						<a href="https://www.instagram.com/egyptoilandgas/" target="_blank" className="google">
 							<i className="fa fa-2x fa-instagram" />
 						</a>
 					</li>
@@ -111,7 +124,11 @@ function SideBar() {
 					<h5 className="sidebar-table-date">{lastMod}</h5>
 				</div>
 			</div>
-			<br></br>
+			<img
+				src="https://ads.egyptoil-gas.com/www/images/4687b97be36525ee64f45a30e99a1289.jpg"
+				width="100%"
+				className="my-5"
+			/>
 			<TopViews />
 			<aside id="text-15" className="widget widget_text">
 				<div className="textwidget">
@@ -123,6 +140,10 @@ function SideBar() {
 					</form>
 				</div>
 			</aside>
+			
+			{/* <aside id="tag_cloud-2" class="widget widget_tag_cloud">
+				
+			</aside> */}
 		</div>
 	);
 }

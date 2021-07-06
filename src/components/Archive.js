@@ -119,7 +119,15 @@ function Archive({ match }) {
 						<div className="col-sm-8">
 							{/* block content */}
 							<div className="block-content">
+								<div class="title-section">
+									<h1>
+										<span>
+											{match.params.category ? match.params.category.replaceAll('-', ' ') : match.params.type}
+										</span>
+									</h1>
+								</div>
 								<div className="row">
+
 									{data.map((post, index) => {
 										if (data.length === index + 1) {
 											return (
@@ -132,19 +140,24 @@ function Archive({ match }) {
 
 														{
 															type === 'publications' ?
-																<img
-																	src={post.featured_media_src_url.replace("750x370", "210x295")}
-																	alt={post.title.rendered}
-																/>
+																<Link
+																	to={`/single/${match.params.type}/${post.id}`}
+																><img
+																		src={post.featured_media_src_url.replace("750x370", "210x295")}
+																		alt={post.title.rendered}
+																	/></Link>
 																:
-																<img
-																	src={
-																		post.featured_media_src_url
-																			? post.featured_media_src_url
-																			: post.acf.svg_map
-																	}
-																	alt={post.title.rendered}
-																/>
+																<Link
+																	to={`/single/${match.params.type}/${post.id}`}
+																><img
+																		src={
+																			post.featured_media_src_url
+																				? post.featured_media_src_url
+																				: post.acf.svg_map
+																		}
+																		alt={post.title.rendered}
+																	/>
+																</Link>
 														}
 													</div>
 													<div className="post-title">
@@ -175,19 +188,26 @@ function Archive({ match }) {
 													<div className="post-gallery">
 														{
 															type === 'publications' ?
-																<img
-																	src={post.featured_media_src_url.replace("750x370", "210x295")}
-																	alt={post.title.rendered}
-																/>
+																<Link
+																	to={`/single/${match.params.type}/${post.id}`}
+																><img
+																		src={post.featured_media_src_url.replace("750x370", "210x295")}
+																		alt={post.title.rendered}
+																	/>
+																</Link>
 																:
-																<img
-																	src={
-																		post.featured_media_src_url
-																			? post.featured_media_src_url
-																			: post.acf.svg_map
-																	}
-																	alt={post.title.rendered}
-																/>
+																<Link
+																	to={`/single/${match.params.type}/${post.id}`}
+																>
+																	<img
+																		src={
+																			post.featured_media_src_url
+																				? post.featured_media_src_url
+																				: post.acf.svg_map
+																		}
+																		alt={post.title.rendered}
+																	/>
+																</Link>
 														}
 													</div>
 													<div className="post-title">

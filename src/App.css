@@ -224,6 +224,36 @@ header.active .nav-list-container {
   max-width: 468px;
 }
 
+.tagcloud{
+	overflow: hidden;
+}
+.tagcloud a{
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  color: #999999;
+  font-size: 12px !important;
+  padding: 6px 9px;
+  border: 1px solid #f0f0f0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+  margin-right: 1px;
+}
+/*.sidebar .tagcloud a{
+  padding: 12px 18px;
+}*/
+.tagcloud  a:hover {
+  border: 1px solid #333333;
+  background: #333333;
+  color: #ffffff;
+}
+
 /* .top-line {
     padding: 7px 0 9px;
     background: #111111;
@@ -1449,7 +1479,7 @@ section.features-today .owl-theme .owl-controls {
 /*block wrapper section */
 
 div.block-content {
-  padding: 30px 0 60px;
+  padding: 30px 0 10px 0;
   position: relative;
 }
 
@@ -1508,7 +1538,7 @@ ul.posts-grid {
 }
 
 .grid-box .news-post, .grid-box ul.list-posts {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
 .masonry-box {
@@ -7790,32 +7820,61 @@ img {
   padding: 8px;
 }
 
+.tools {
+  position: absolute;
+  bottom: 5px;
+  right: 1px;
+  border: 0;
+  z-index: 999;
+  background: rgb(0 0 0 / 70%);
+}
+
 .map-btn {
-  background-color:#c69c6d !important;
+  background-color: #c69c6d !important;
   color: #fff;
   border: 1px solid #000;
   margin: 2px;
-  font-size: 20px;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  line-height: 35px;
 }
 
 @media screen and (max-width: 768px) {
-
   .featuredVideo_videoSlider__9ZrAb {
     display: block !important;
   }
-
   .featuredVideo_thumbnail__1wxS9 {
     flex-direction: column;
   }
   .featuredVideo_thumbnail__1wxS9 h2 {
     font-size: 12px !important;
   }
-
   ul.posts-grid {
     grid-template-columns: repeat(1, 1fr);
   }
-
   header form {
     width: 50%;
   }
+}
+
+.tv .post-gallery {
+  position: relative;
+}
+
+.tv .tv-holder {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tv-holder img {
+  width: 150px;
+  cursor: pointer;
 }

@@ -7,19 +7,21 @@ import {
 	useParams,
 	useHistory,
 	useLocation,
-
+	useRouteMatch,
 } from 'react-router-dom';
+
+import renderHTML from "react-render-html";
 
 import SideBar from './SideBar';
 import axios from 'axios';
 
 import Moment from 'react-moment';
 import 'moment-timezone';
-
+import TopViews from './TopViews';
 import Loading from './Loading';
+import { param } from 'jquery';
 
-import renderHTML from "react-render-html";
-function News({ match }) {
+function Tv({ match }) {
 	const [data, setData] = useState([]);
 	const [cats, setCats] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -30,10 +32,25 @@ function News({ match }) {
 
 	const type = match.params.type;
 	// const firstRender = useRef(false)
+	const isLastElVisible = useCallback(
+		(node) => {
+			if (loading) return;
+			if (lastEl.current) lastEl.current.disconnect();
+			lastEl.current = new IntersectionObserver((entries) => {
+				if (entries[0].isIntersecting && hasMore) {
+					setPageNumber((prev) => prev + 1);
+				}
+			});
+			if (node) lastEl.current.observe(node);
+			if (!hasMore) setLoading(false);
+		},
+		[loading, hasMore]
+	);
 
 	useEffect(() => {
+		setPageNumber(1);
 		setData([]);
-		fetchData();
+		fetchData(1);
 		console.log('fetching first');
 		setLoading(true);
 		setHasMore(true);
@@ -45,17 +62,17 @@ function News({ match }) {
 	// 	fetchData(pageNumber);
 	// }, [pageNumber]);
 
-	const fetchData = async () => {
+	const fetchData = async (page) => {
 		setLoading(true);
 		console.log('fetching func');
 		await axios
-			.get('https://egyptoil-gas.com/wp-json/wp/v2/events_category')
+			.get('https://egyptoil-gas.com/wp-json/wp/v2/tv_category')
 			.then((res) => {
 				setCats(res.data);
 				res.data.map((slug) => {
 					axios
 						.get(
-							`https://egyptoil-gas.com/wp-json/wp/v2/events_coverage?filter[events_category]=${slug.slug}`,
+							`https://egyptoil-gas.com/wp-json/wp/v2/tv?filter[tv_category]=${slug.slug}`,
 							{
 								params: {
 									per_page: 2
@@ -68,7 +85,9 @@ function News({ match }) {
 								setHasMore(false);
 								return;
 							}
+
 							setData((prev) => [...prev, ...res.data]);
+							console.log(data);
 
 							if (data.length === 0) {
 								console.log('false');
@@ -87,13 +106,10 @@ function News({ match }) {
 							}
 						});
 				});
-
 			});
-
-
 	};
 	return (
-		<section className="block-wrapper">
+		<section className="block-wrapper tv">
 			<div className="container">
 				{data.length > 0 && (
 					<div className="row">
@@ -101,14 +117,13 @@ function News({ match }) {
 							{/* block content */}
 							<div className="block-content">
 								<div className="row">
-									{console.log(data)}
-									{cats.map((cat, index) => (
-										<div key={cat.id} className={`blockDiv col-sm-12 ${index == 0 ? 'd-none' : ''} ${index == cats.length - 1 ? 'd-none' : ''}`}>
-											<div class="title-section">
+									{cats.map((cat) => (
+										<div key={cat.id} className="blockDiv col-sm-12">
+											<div class={`title-section ${cat.count === 0 ? 'd-none' : ''}`}>
 												<h1>
 													<span>
-														<Link to={`archive/events_coverage/events_category/${cat.slug}`}>
-															{cat.slug}
+														<Link to={`archive/tv/tv_category/${cat.slug}`}>
+															{renderHTML(cat.slug)}
 														</Link>
 													</span>
 												</h1>
@@ -117,25 +132,27 @@ function News({ match }) {
 												{data.map(
 													(post, index) =>
 														data.length > 0 &&
-														post.events_category[0] === cat.id && (
+														post.tv_category[0] === cat.id && (
 															<div
 																className="news-post standard-post2 col-sm-6"
 																key={`${post.id}-${post.slug}`}
+																ref={isLastElVisible}
 															>
 																<div className="post-gallery">
-																	<Link
-																		to={`/single/events_coverage/${post.id}`}
-																	>
-																		<img
-																			src={post.featured_media_src_url}
-																			alt={renderHTML(post.title.rendered)}
-																		/>
-																	</Link>
+																	<img
+																		src={post.featured_media_src_url}
+																		alt={post.title.rendered}
+																	/>
+																	<div className="tv-holder">
+																		<Link
+																			to={`/single/tv/${post.id}`}
+																		><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
+																	</div>
 																</div>
 																<div className="post-title">
 																	<h2>
 																		<Link
-																			to={`/single/events_coverage/${post.id}`}
+																			to={`/single/tv/${post.id}`}
 																		>
 																			{renderHTML(post.title.rendered)}
 																		</Link>
@@ -150,12 +167,13 @@ function News({ match }) {
 																	</ul>
 																</div>
 															</div>
+
 														)
 												)}
 											</div>
-											<h5 className="text-right mb-3">
+											<h5 className={`text-right mb-3 ${cat.count === 0 ? 'd-none' : ''}`}>
 												<span>
-													<Link to={`archive/events_coverage/events_category/${cat.slug}`}>More &#8594;</Link>
+													<Link to={`archive/tv/tv_category/${cat.slug}`}>More &#8594;</Link>
 												</span>
 											</h5>
 										</div>
@@ -180,4 +198,4 @@ function News({ match }) {
 	);
 }
 
-export default News;
+export default Tv;
