@@ -329,7 +329,7 @@ function TwoBoxes() {
                   <img
                     src="https://ads.egyptoil-gas.com/www/images/54a8fb2810a50256c62e6f11e122f887.jpg"
                     width="100%"
-                    className="mb-3 mt-3"
+                    className="mb-3"
                   />
                 </div>
                 {/* End block content */}
