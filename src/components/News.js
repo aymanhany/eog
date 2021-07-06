@@ -10,6 +10,8 @@ import {
 	useRouteMatch,
 } from 'react-router-dom';
 
+import renderHTML from "react-render-html";
+
 import SideBar from './SideBar';
 import axios from 'axios';
 
@@ -142,7 +144,7 @@ function News({ match }) {
 																	>
 																		<img
 																			src={post.featured_media_src_url}
-																			alt={post.title.rendered}
+																			alt={renderHTML(post.title.rendered)}
 																		/>
 																	</Link>
 																</div>
@@ -151,7 +153,7 @@ function News({ match }) {
 																		<Link
 																			to={`/single/${match.params.type}/${post.id}`}
 																		>
-																			{post.title.rendered}
+																			{renderHTML(post.title.rendered)}
 																		</Link>
 																	</h2>
 																	<ul className="post-tags">

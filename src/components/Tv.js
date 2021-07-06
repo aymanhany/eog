@@ -138,10 +138,10 @@ function Tv({ match }) {
 																key={`${post.id}-${post.slug}`}
 																ref={isLastElVisible}
 															>
-																<div className="post-gallery">
+																<div className="tv post-gallery">
 																	<img
 																		src={post.featured_media_src_url}
-																		alt={post.title.rendered}
+																		alt={renderHTML(post.title.rendered)}
 																	/>
 																	<div className="tv-holder">
 																		<Link

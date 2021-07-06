@@ -10,6 +10,8 @@ import {
   useRouteMatch,
 } from "react-router-dom";
 
+import renderHTML from "react-render-html";
+
 import SideBar from "./SideBar";
 import axios from "axios";
 
@@ -132,7 +134,7 @@ function Issues({ match }) {
                                         "750x370",
                                         "210x295"
                                       )}
-                                      alt={post.title.rendered}
+                                      alt={renderHTML(post.title.rendered)}
                                     />
                                   </Link>
                                 </div>
@@ -141,7 +143,7 @@ function Issues({ match }) {
                                     <Link
                                       to={`/single/publications/${post.id}`}
                                     >
-                                      {post.title.rendered}
+                                      {renderHTML(post.title.rendered)}
                                     </Link>
                                   </h2>
                                   <ul className="post-tags">

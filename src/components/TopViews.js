@@ -7,6 +7,8 @@ import {
 	useParams,
 } from 'react-router-dom';
 
+import renderHTML from "react-render-html";
+
 import axios from 'axios';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -42,11 +44,11 @@ function TopViews() {
 						{topReviews ? (
 							topReviews.map((post) => (
 								<li key={post.id}>
-									<Link to={`/single/news/${post.id}`}><img src={post.featured_media_src_url} alt={post.title.rendered} /></Link>
+									<Link to={`/single/news/${post.id}`}><img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} /></Link>
 									<div className="post-content">
 										<h2>
 											<Link to={`/single/news/${post.id}`}>
-												{post.title.rendered.substring(0, 50)}
+												{renderHTML(post.title.rendered.substring(0, 50))}
 											</Link>
 										</h2>
 										<ul className="post-tags">
@@ -68,7 +70,7 @@ function TopViews() {
 						{news ? (
 							news.map((post) => (
 								<li key={post.id}>
-									<Link to={`/single/news/${post.id}`}><img src={post.featured_media_src_url} alt={post.title.rendered} /></Link>
+									<Link to={`/single/news/${post.id}`}><img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} /></Link>
 									<div className="post-content">
 										<h2>
 											<Link to={`/single/news/${post.id}`}>

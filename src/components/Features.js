@@ -139,7 +139,7 @@ function Features({ match }) {
 																<div className="post-gallery">
 																	<img
 																		src={post.featured_media_src_url}
-																		alt={post.title.rendered}
+																		alt={renderHTML(post.title.rendered)}
 																	/>
 																</div>
 																<div className="post-title">
@@ -147,7 +147,7 @@ function Features({ match }) {
 																		<Link
 																			to={`/single/features/${post.id}`}
 																		>
-																			{post.title.rendered}
+																			{renderHTML(post.title.rendered)}
 																		</Link>
 																	</h2>
 																	<ul className="post-tags">

@@ -2,15 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './featuredVideo.module.css';
 import axios from 'axios';
 import clsx from 'clsx';
-// Import Swiper React components
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import SwiperCore, { Navigation } from 'swiper';
-// Import Swiper styles
-// import 'swiper/swiper.scss';
-// import 'swiper/components/navigation/navigation.scss';
-// import SwiperArrows from '../SwiperArrows';
 
-// SwiperCore.use([Navigation]);
+import renderHTML from "react-render-html";
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -83,9 +76,9 @@ function FeaturedVideo() {
 												>
 													<img
 														src={post.featured_media_src_url}
-														alt={post.title.rendered}
+														alt={renderHTML(post.title.rendered)}
 													/>
-													<h2>{post.title.rendered}</h2>
+													<h2>{renderHTML(post.title.rendered)}</h2>
 												</div>
 											</li>
 										))
@@ -107,10 +100,10 @@ function FeaturedVideo() {
                                     videos.map(post => (
                                         <SwiperSlide>
                                             <div className="item news-post video-post">
-                                                <img src={post.featured_media_src_url} alt={post.title.rendered} />
+                                                <img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} />
                                                 <a target="_blank" href={post.acf.video} className="video-link"><i className="fa fa-play-circle-o" /></a>
                                                 <div className="hover-box">
-                                                    <h2>{post.title.rendered}</h2>
+                                                    <h2>{renderHTML(post.title.rendered)}</h2>
                                                 </div>
                                             </div>
                                         </SwiperSlide>

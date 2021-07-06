@@ -10,6 +10,8 @@ import {
 	useRouteMatch,
 } from 'react-router-dom';
 
+import renderHTML from "react-render-html";
+
 import SideBar from './SideBar';
 import axios from 'axios';
 
@@ -136,27 +138,35 @@ function Archive({ match }) {
 													key={`${post.id}-${post.slug}`}
 													ref={isLastElVisible}
 												>
-													<div className="post-gallery">
-
+													<div className={`${type == 'tv' ? 'tv' : ''} post-gallery`}>
 														{
 															type === 'publications' ?
 																<Link
 																	to={`/single/${match.params.type}/${post.id}`}
 																><img
 																		src={post.featured_media_src_url.replace("750x370", "210x295")}
-																		alt={post.title.rendered}
-																	/></Link>
+																		alt={renderHTML(post.title.rendered)}
+																	/>
+																</Link>
 																:
 																<Link
 																	to={`/single/${match.params.type}/${post.id}`}
-																><img
+																>
+																	<img
 																		src={
 																			post.featured_media_src_url
 																				? post.featured_media_src_url
 																				: post.acf.svg_map
 																		}
-																		alt={post.title.rendered}
+																		alt={renderHTML(post.title.rendered)}
 																	/>
+																	{type == 'tv' ?
+																		<div className="tv-holder">
+																			<Link
+																				to={`/single/tv/${post.id}`}
+																			><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
+																		</div>
+																		: ''}
 																</Link>
 														}
 													</div>
@@ -165,7 +175,7 @@ function Archive({ match }) {
 															<Link
 																to={`/single/${match.params.type}/${post.id}`}
 															>
-																{post.title.rendered}
+																{renderHTML(post.title.rendered)}
 															</Link>
 														</h2>
 														<ul className="post-tags">
@@ -185,14 +195,14 @@ function Archive({ match }) {
 													className={`news-post standard-post2 ${type === 'publications' ? 'col-sm-4' : 'col-sm-6'} `}
 													key={post.id}
 												>
-													<div className="post-gallery">
+													<div className={`${type == 'tv' ? 'tv' : ''} post-gallery`}>
 														{
 															type === 'publications' ?
 																<Link
 																	to={`/single/${match.params.type}/${post.id}`}
 																><img
 																		src={post.featured_media_src_url.replace("750x370", "210x295")}
-																		alt={post.title.rendered}
+																		alt={renderHTML(post.title.rendered)}
 																	/>
 																</Link>
 																:
@@ -205,8 +215,15 @@ function Archive({ match }) {
 																				? post.featured_media_src_url
 																				: post.acf.svg_map
 																		}
-																		alt={post.title.rendered}
+																		alt={renderHTML(post.title.rendered)}
 																	/>
+																	{type == 'tv' ?
+																		<div className="tv-holder">
+																			<Link
+																				to={`/single/tv/${post.id}`}
+																			><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
+																		</div>
+																		: ''}
 																</Link>
 														}
 													</div>
@@ -215,7 +232,7 @@ function Archive({ match }) {
 															<Link
 																to={`/single/${match.params.type}/${post.id}`}
 															>
-																{post.title.rendered}
+																{renderHTML(post.title.rendered)}
 															</Link>
 														</h2>
 														<ul className="post-tags">

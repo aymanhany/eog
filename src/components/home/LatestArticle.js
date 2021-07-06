@@ -7,6 +7,8 @@ import {
 	useParams,
 } from 'react-router-dom';
 
+import renderHTML from "react-render-html";
+
 import axios from 'axios';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -53,13 +55,13 @@ function LatestArticle() {
 											<div className="post-gallery">
 												<img
 													src={post.featured_media_src_url}
-													alt={post.title.rendered}
+													alt={renderHTML(post.title.rendered)}
 												/>
 											</div>
 											<div className="post-title">
 												<h2>
 													<Link to={`/single/news/${post.id}`}>
-														{post.title.rendered}
+														{renderHTML(post.title.rendered)}
 													</Link>
 												</h2>
 												<ul className="post-tags">

@@ -7,6 +7,8 @@ import {
 	useParams,
 } from 'react-router-dom';
 
+import renderHTML from "react-render-html";
+
 import axios from 'axios';
 
 import Moment from 'react-moment';
@@ -107,7 +109,7 @@ function FeaturesToday() {
 												<Link to={`/single/features/${post.id}`}>
 													<img
 														src={post.featured_media_src_url}
-														alt={post.title.rendered}
+														alt={renderHTML(post.title.rendered)}
 													/>
 												</Link>
 												{/* <a className="category-post world" href="world.html">Music</a> */}
@@ -115,7 +117,7 @@ function FeaturesToday() {
 											<div className="post-content">
 												<h2>
 													<Link to={`/single/features/${post.id}`}>
-														{post.title.rendered}
+														{renderHTML(post.title.rendered)}
 													</Link>
 												</h2>
 												<ul className="post-tags">

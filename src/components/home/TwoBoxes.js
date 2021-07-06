@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import "moment-timezone";
 
+import renderHTML from "react-render-html";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
@@ -122,13 +124,13 @@ function TwoBoxes() {
                                   "750x370",
                                   "210x295"
                                 )}
-                                alt={post.title.rendered}
+                                alt={renderHTML(post.title.rendered)}
                               />
                             </Link>
                             <div className="hover-box">
                               <h2>
                                 <Link to={`/single/publications/${post.id}`}>
-                                  {post.title.rendered}
+                                  {renderHTML(post.title.rendered)}
                                 </Link>
                               </h2>
                               <ul className="post-tags">
@@ -210,7 +212,7 @@ function TwoBoxes() {
                                       <Link to={`/single/reports/${post.id}`}>
                                         <img
                                           src={post.featured_media_src_url}
-                                          alt={post.title.rendered}
+                                          alt={renderHTML(post.title.rendered)}
                                           height="200"
                                         />
                                       </Link>
@@ -219,7 +221,7 @@ function TwoBoxes() {
                                           <Link
                                             to={`/single/reports/${post.id}`}
                                           >
-                                            {post.title.rendered}
+                                            {renderHTML(post.title.rendered)}
                                           </Link>
                                         </h2>
                                         <ul className="post-tags">
@@ -282,7 +284,7 @@ function TwoBoxes() {
                                       >
                                         <img
                                           src={post.featured_media_src_url}
-                                          alt={post.title.rendered}
+                                          alt={renderHTML(post.title.rendered)}
                                         />
                                       </Link>
 
@@ -291,7 +293,7 @@ function TwoBoxes() {
                                           <Link
                                             to={`/single/events_coverage/${post.id}`}
                                           >
-                                            {post.title.rendered}
+                                            {renderHTML(post.title.rendered)}
                                           </Link>
                                         </h2>
                                         <ul className="post-tags">
