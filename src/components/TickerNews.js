@@ -31,7 +31,7 @@ function TickerNews() {
             <section className="ticker-news">
                 <div className="container">
                     <div className="ticker-news-box">
-                        <span className="breaking-news">breaking news</span>
+                        <span className="breaking-news">News</span>
                         <div className="ticker-content">
                             <Swiper
                                 slidesPerView={2}

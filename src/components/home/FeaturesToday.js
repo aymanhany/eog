@@ -44,7 +44,7 @@ function FeaturesToday() {
 	const [features, setFeatures] = useState([]);
 	useEffect(async () => {
 		const resft = await api.get(
-			'https://egyptoil-gas.com/wp-json/wp/v2/features?per_page=10&_embed'
+			'https://egyptoil-gas.com/wp-json/wp/v2/features?per_page=9&_embed'
 		);
 		setFeatures(resft.data);
 	}, []);
