@@ -145,7 +145,7 @@ function Features({ match }) {
 																<div className="post-title">
 																	<h2>
 																		<Link
-																			to={`/single/features/${post.id}`}
+																			to={`/single/features/${post.slug}`}
 																		>
 																			{renderHTML(post.title.rendered)}
 																		</Link>

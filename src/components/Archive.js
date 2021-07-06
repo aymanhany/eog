@@ -142,7 +142,7 @@ function Archive({ match }) {
 														{
 															type === 'publications' ?
 																<Link
-																	to={`/single/${match.params.type}/${post.id}`}
+																	to={`/single/${match.params.type}/${post.slug}`}
 																><img
 																		src={post.featured_media_src_url.replace("750x370", "210x295")}
 																		alt={renderHTML(post.title.rendered)}
@@ -150,7 +150,7 @@ function Archive({ match }) {
 																</Link>
 																:
 																<Link
-																	to={`/single/${match.params.type}/${post.id}`}
+																	to={`/single/${match.params.type}/${post.slug}`}
 																>
 																	<img
 																		src={
@@ -163,7 +163,7 @@ function Archive({ match }) {
 																	{type == 'tv' ?
 																		<div className="tv-holder">
 																			<Link
-																				to={`/single/tv/${post.id}`}
+																				to={`/single/tv/${post.slug}`}
 																			><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
 																		</div>
 																		: ''}
@@ -173,7 +173,7 @@ function Archive({ match }) {
 													<div className="post-title">
 														<h2>
 															<Link
-																to={`/single/${match.params.type}/${post.id}`}
+																to={`/single/${match.params.type}/${post.slug}`}
 															>
 																{renderHTML(post.title.rendered)}
 															</Link>
@@ -199,7 +199,7 @@ function Archive({ match }) {
 														{
 															type === 'publications' ?
 																<Link
-																	to={`/single/${match.params.type}/${post.id}`}
+																	to={`/single/${match.params.type}/${post.slug}`}
 																><img
 																		src={post.featured_media_src_url.replace("750x370", "210x295")}
 																		alt={renderHTML(post.title.rendered)}
@@ -207,7 +207,7 @@ function Archive({ match }) {
 																</Link>
 																:
 																<Link
-																	to={`/single/${match.params.type}/${post.id}`}
+																	to={`/single/${match.params.type}/${post.slug}`}
 																>
 																	<img
 																		src={
@@ -220,7 +220,7 @@ function Archive({ match }) {
 																	{type == 'tv' ?
 																		<div className="tv-holder">
 																			<Link
-																				to={`/single/tv/${post.id}`}
+																				to={`/single/tv/${post.slug}`}
 																			><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
 																		</div>
 																		: ''}
@@ -230,7 +230,7 @@ function Archive({ match }) {
 													<div className="post-title">
 														<h2>
 															<Link
-																to={`/single/${match.params.type}/${post.id}`}
+																to={`/single/${match.params.type}/${post.slug}`}
 															>
 																{renderHTML(post.title.rendered)}
 															</Link>

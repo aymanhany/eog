@@ -44,7 +44,7 @@ function TickerNews() {
                                 {
                                     tickerData ?
                                         tickerData.map(post => (
-                                            <SwiperSlide key={post.id}><Link to={`/single/news/${post.id}`}>{renderHTML(post.title.rendered).substring(0, 60)}...</Link></SwiperSlide>
+                                            <SwiperSlide key={post.id}><Link to={`/single/news/${post.slug}`}>{renderHTML(post.title.rendered).substring(0, 60)}...</Link></SwiperSlide>
                                         ))
                                         : 'loading..'
                                 }

@@ -44,10 +44,10 @@ function TopViews() {
 						{topReviews ? (
 							topReviews.map((post) => (
 								<li key={post.id}>
-									<Link to={`/single/news/${post.id}`}><img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} /></Link>
+									<Link to={`/single/news/${post.slug}`}><img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} /></Link>
 									<div className="post-content">
 										<h2>
-											<Link to={`/single/news/${post.id}`}>
+											<Link to={`/single/news/${post.slug}`}>
 												{renderHTML(post.title.rendered.substring(0, 50))}
 											</Link>
 										</h2>
@@ -70,10 +70,10 @@ function TopViews() {
 						{news ? (
 							news.map((post) => (
 								<li key={post.id}>
-									<Link to={`/single/news/${post.id}`}><img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} /></Link>
+									<Link to={`/single/news/${post.slug}`}><img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} /></Link>
 									<div className="post-content">
 										<h2>
-											<Link to={`/single/news/${post.id}`}>
+											<Link to={`/single/news/${post.slug}`}>
 												{post.title.rendered.substring(0, 50)}
 											</Link>
 										</h2>

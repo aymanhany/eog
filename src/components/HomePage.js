@@ -10,8 +10,8 @@ function HomePage() {
     <div>
       <HeadingNews />
       <FeaturesToday />
-      <TwoBoxes />
       <FeaturedVideo />
+      <TwoBoxes />
     </div>
   );
 }

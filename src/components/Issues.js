@@ -127,7 +127,7 @@ function Issues({ match }) {
                               >
                                 <div className="post-gallery">
                                   <Link
-                                    to={`/single/publications/${post.id}`}
+                                    to={`/single/publications/${post.slug}`}
                                   >
                                     <img
                                       src={post.featured_media_src_url.replace(
@@ -141,7 +141,7 @@ function Issues({ match }) {
                                 <div className="post-title">
                                   <h2>
                                     <Link
-                                      to={`/single/publications/${post.id}`}
+                                      to={`/single/publications/${post.slug}`}
                                     >
                                       {renderHTML(post.title.rendered)}
                                     </Link>

@@ -20,6 +20,53 @@ import Moment from "react-moment";
 import "moment-timezone";
 import SideBar from "./SideBar";
 import TopViews from "./TopViews";
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  HatenaShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
+
+import {
+  EmailIcon,
+  FacebookIcon,
+  FacebookMessengerIcon,
+  HatenaIcon,
+  InstapaperIcon,
+  LineIcon,
+  LinkedinIcon,
+  LivejournalIcon,
+  MailruIcon,
+  OKIcon,
+  PinterestIcon,
+  PocketIcon,
+  RedditIcon,
+  TelegramIcon,
+  TumblrIcon,
+  TwitterIcon,
+  ViberIcon,
+  VKIcon,
+  WeiboIcon,
+  WhatsappIcon,
+  WorkplaceIcon
+} from "react-share";
+
+
 import Loading from "./Loading";
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
@@ -53,14 +100,15 @@ function Single({ match }) {
   useEffect(async () => {
     await axios
       .get(
-        `https://egyptoil-gas.com/wp-json/wp/v2/${match.params.type}/${match.params.id}?_embed`
+        `https://egyptoil-gas.com/wp-json/wp/v2/${match.params.type}?slug=${match.params.slug}&_embed`
       )
       .then(
         (res) => {
           setPost(res.data);
+          console.log(res.data);
           axios
             .get(
-              `https://egyptoil-gas.com/wp-json/wp/v2/tags?post=${res.data.id}`
+              `https://egyptoil-gas.com/wp-json/wp/v2/tags?post=${res.data[0].id}`
             )
             .then((res) => setTags(res.data));
         })
@@ -95,11 +143,17 @@ function Single({ match }) {
                   {/* single-post box */}
                   <div className="single-post-box">
                     <div className="title-post">
-                      <h1>{renderHTML(post.title.rendered)}</h1>
+                      <h1>{renderHTML(post[0].title.rendered)}</h1>
+                      <div className="social-btns my-3">
+                        <span className="mr-3"><b>Share: </b></span>
+                        <FacebookShareButton url={window.location.href}><FacebookIcon round={true} size={30} /></FacebookShareButton>
+                        <TwitterShareButton url={window.location.href}><TwitterIcon round={true} size={30} /></TwitterShareButton>
+                        <EmailShareButton url={window.location.href}><EmailIcon round={true} size={30} /></EmailShareButton>
+                      </div>
                       <ul className="post-tags">
                         <li>
                           <i className="fa fa-clock-o" />
-                          <Moment format="YYYY/MM/DD">{post.date}</Moment>
+                          <Moment format="YYYY/MM/DD">{post[0].date}</Moment>
                         </li>
                         <li>
                           {post?._embedded?.author && (
@@ -108,7 +162,7 @@ function Single({ match }) {
 
                               <span>
                                 {" "}
-                                "by" {post?._embedded?.author[0]?.name}{" "}
+                                "by" {post[0]?._embedded?.author[0]?.name}{" "}
                               </span>
                             </>
                           )}
@@ -117,18 +171,18 @@ function Single({ match }) {
                     </div>
 
                     <div className="post-gallery">
-                      <div className="item news-post video-post" key={post.id}>
+                      <div className="item news-post video-post" key={post[0].id}>
                         {type !== "tv" &&
                           type !== "reports" &&
                           type !== "publications" &&
                           type !== "maps" ? (
                           <img
                             src={
-                              post.featured_media_src_url
-                                ? post.featured_media_src_url
+                              post[0].featured_media_src_url
+                                ? post[0].featured_media_src_url
                                 : ""
                             }
-                            alt={renderHTML(post.title.rendered)}
+                            alt={renderHTML(post[0].title.rendered)}
                           />
                         ) : (
                           ""
@@ -149,9 +203,9 @@ function Single({ match }) {
                                 <TransformComponent>
                                   <img
                                     src={
-                                      post.acf.svg_map
+                                      post[0].acf.svg_map
                                     }
-                                    alt={renderHTML(post.title.rendered)}
+                                    alt={renderHTML(post[0].title.rendered)}
                                   />
                                 </TransformComponent>
                               </React.Fragment>
@@ -161,13 +215,13 @@ function Single({ match }) {
                           ""
                         )}
 
-                        {post.acf.video ? (
+                        {post[0].acf.video ? (
                           <>
                             <iframe
                               width="100%"
                               height="400"
                               src={`//www.youtube.com/embed/${getId(
-                                post.acf.video
+                                post[0].acf.video
                               )}`}
                               frameborder="0"
                               allowfullscreen
@@ -180,11 +234,11 @@ function Single({ match }) {
                       {/* <span className="image-caption">Cras eget sem nec dui volutpat ultrices.</span> */}
                     </div>
                     <div className="post-content">
-                      {post.content && renderHTML(post.content.rendered)}
+                      {post[0].content && renderHTML(post[0].content.rendered)}
                       {type == 'news' && (
                         <>
-                          <div class="title-section"><h2><span>Popular tags</span></h2></div>
-                          <div class="tagcloud">
+                          <div class={`title-section ${tags ? '' : 'd-none'}`}><h2><span>Popular tags</span></h2></div>
+                          <div class="tagcloud mb-3">
                             {
                               tags.map((tag) => (
                                 <Link to={`/archive/news/tag/${tag.slug}`} class="tag-link-25 tag-link-position-1">{tag.name}</Link>
@@ -196,13 +250,13 @@ function Single({ match }) {
                         </>
                       )}
                       {type == "reports"
-                        ? renderHTML(post.acf.issuu_code)
+                        ? renderHTML(post[0].acf.issuu_code)
                         : type == "publications"
-                          ? renderHTML(post.acf.issuu_code)
+                          ? renderHTML(post[0].acf.issuu_code)
                           : ""}
 
                       {type == "reports" || type == "publications" ? (
-                        <a href={post.acf.pdf} className="d-block my-3" target="_blank" download>
+                        <a href={post[0].acf.pdf} className="d-block my-3" target="_blank" download>
                           Download File
                         </a>
                       ) : (
@@ -235,7 +289,7 @@ function Single({ match }) {
                         {like.map((post) => (
                           <SwiperSlide key={post.id}>
                             <div className="item news-post image-post3">
-                              <Link to={`/single/news/${post.id}`}>
+                              <Link to={`/single/news/${post.slug}`}>
                                 <img
                                   // style={{ "minHeight": "200px" }}
                                   src={
@@ -248,7 +302,7 @@ function Single({ match }) {
                               </Link>
                               <div className="hover-box">
                                 <h2>
-                                  <Link to={`/single/news/${post.id}`}>
+                                  <Link to={`/single/news/${post.slug}`}>
                                     {renderHTML(post.title.rendered)}
                                   </Link>
                                 </h2>

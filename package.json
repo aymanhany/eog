@@ -29,6 +29,7 @@
     "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
     "react-slick": "^0.28.1",
     "react-svg-pan-zoom": "^3.10.0",
     "react-ticker": "^1.2.2",

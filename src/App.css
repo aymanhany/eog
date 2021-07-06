@@ -7878,3 +7878,7 @@ img {
   width: 150px;
   cursor: pointer;
 }
+
+.social-btns button {
+  margin-right: 5px;
+}

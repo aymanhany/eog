@@ -29,7 +29,7 @@ function App() {
 				<Header />
 				<Switch>
 					<Route exact path="/" component={HomePage} />
-					<Route path="/single/:type/:id" component={Single} />
+					<Route path="/single/:type/:slug" component={Single} />
 					<Route path="/page/:id" component={SinglePage} />
 					<Route exact path="/news" component={News} />
 					<Route exact path="/tv" component={Tv} />

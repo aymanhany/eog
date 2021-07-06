@@ -106,7 +106,7 @@ function FeaturesToday() {
 									<SwiperSlide key={post.id}>
 										<div className="item news-post standard-post">
 											<div className="post-gallery">
-												<Link to={`/single/features/${post.id}`}>
+												<Link to={`/single/features/${post.slug}`}>
 													<img
 														src={post.featured_media_src_url}
 														alt={renderHTML(post.title.rendered)}
@@ -116,7 +116,7 @@ function FeaturesToday() {
 											</div>
 											<div className="post-content">
 												<h2>
-													<Link to={`/single/features/${post.id}`}>
+													<Link to={`/single/features/${post.slug}`}>
 														{renderHTML(post.title.rendered)}
 													</Link>
 												</h2>

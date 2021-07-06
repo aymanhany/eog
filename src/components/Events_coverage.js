@@ -124,7 +124,7 @@ function News({ match }) {
 															>
 																<div className="post-gallery">
 																	<Link
-																		to={`/single/events_coverage/${post.id}`}
+																		to={`/single/events_coverage/${post.slug}`}
 																	>
 																		<img
 																			src={post.featured_media_src_url}
@@ -135,7 +135,7 @@ function News({ match }) {
 																<div className="post-title">
 																	<h2>
 																		<Link
-																			to={`/single/events_coverage/${post.id}`}
+																			to={`/single/events_coverage/${post.slug}`}
 																		>
 																			{renderHTML(post.title.rendered)}
 																		</Link>

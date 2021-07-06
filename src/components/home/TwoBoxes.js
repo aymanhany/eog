@@ -118,7 +118,7 @@ function TwoBoxes() {
                       {publications.map((post) => (
                         <SwiperSlide key={post.id}>
                           <div className="item news-post image-post3">
-                            <Link to={`/single/publications/${post.id}`}>
+                            <Link to={`/single/publications/${post.slug}`}>
                               <img
                                 src={post.featured_media_src_url.replace(
                                   "750x370",
@@ -129,7 +129,7 @@ function TwoBoxes() {
                             </Link>
                             <div className="hover-box">
                               <h2>
-                                <Link to={`/single/publications/${post.id}`}>
+                                <Link to={`/single/publications/${post.slug}`}>
                                   {renderHTML(post.title.rendered)}
                                 </Link>
                               </h2>
@@ -209,7 +209,7 @@ function TwoBoxes() {
                                 <li>
                                   <SwiperSlide key={post.id}>
                                     <div className="item news-post image-post3">
-                                      <Link to={`/single/reports/${post.id}`}>
+                                      <Link to={`/single/reports/${post.slug}`}>
                                         <img
                                           src={post.featured_media_src_url}
                                           alt={renderHTML(post.title.rendered)}
@@ -219,7 +219,7 @@ function TwoBoxes() {
                                       <div className="hover-box">
                                         <h2>
                                           <Link
-                                            to={`/single/reports/${post.id}`}
+                                            to={`/single/reports/${post.slug}`}
                                           >
                                             {renderHTML(post.title.rendered)}
                                           </Link>
@@ -280,7 +280,7 @@ function TwoBoxes() {
                                   {events.map((post) => (
                                     <li key={post.id}>
                                       <Link
-                                        to={`/single/events_coverage/${post.id}`}
+                                        to={`/single/events_coverage/${post.slug}`}
                                       >
                                         <img
                                           src={post.featured_media_src_url}
@@ -291,7 +291,7 @@ function TwoBoxes() {
                                       <div className="post-content">
                                         <h2>
                                           <Link
-                                            to={`/single/events_coverage/${post.id}`}
+                                            to={`/single/events_coverage/${post.slug}`}
                                           >
                                             {renderHTML(post.title.rendered)}
                                           </Link>
@@ -329,7 +329,7 @@ function TwoBoxes() {
                   <img
                     src="https://ads.egyptoil-gas.com/www/images/54a8fb2810a50256c62e6f11e122f887.jpg"
                     width="100%"
-                    className="mb-3"
+                    className="mb-3 mt-3"
                   />
                 </div>
                 {/* End block content */}

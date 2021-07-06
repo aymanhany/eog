@@ -59,7 +59,7 @@ function HeadingNews() {
 							if (index === 0)
 								return (
 									<div className="news-post image-post" key={post.id}>
-										<Link to={`/single/news/${post.id}`}>
+										<Link to={`/single/news/${post.slug}`}>
 											<img
 												src={post.featured_media_src_url}
 												alt=""
@@ -70,7 +70,7 @@ function HeadingNews() {
 										<div className="hover-box">
 											<div className="inner-hover">
 												<h2>
-													<Link to={`/single/news/${post.id}`}>
+													<Link to={`/single/news/${post.slug}`}>
 														{post.title.rendered.substring(0, 50)}
 													</Link>
 												</h2>
@@ -94,7 +94,7 @@ function HeadingNews() {
 										return (
 											<SwiperSlide key={post.id}>
 												<div className="news-post image-post">
-													<Link to={`/single/news/${post.id}`}>
+													<Link to={`/single/news/${post.slug}`}>
 														<img
 															src={post.featured_media_src_url}
 															alt=""
@@ -105,7 +105,7 @@ function HeadingNews() {
 													<div className="hover-box">
 														<div className="inner-hover">
 															<h2>
-																<Link to={`/single/news/${post.id}`}>
+																<Link to={`/single/news/${post.slug}`}>
 																	{post.title.rendered.substring(0, 50)}
 																</Link>
 															</h2>
@@ -126,7 +126,7 @@ function HeadingNews() {
 							if (index > 0) {
 								return (
 									<div className="news-post image-post" key={post.id}>
-										<Link to={`/single/news/${post.id}`}>
+										<Link to={`/single/news/${post.slug}`}>
 											<img
 												src={post.featured_media_src_url}
 												alt=""
@@ -137,7 +137,7 @@ function HeadingNews() {
 										<div className="hover-box">
 											<div className="inner-hover">
 												<h2>
-													<Link to={`/single/news/${post.id}`}>
+													<Link to={`/single/news/${post.slug}`}>
 														{post.title.rendered.substring(0, 50)}
 													</Link>
 												</h2>

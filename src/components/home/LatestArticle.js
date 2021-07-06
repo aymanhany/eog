@@ -60,7 +60,7 @@ function LatestArticle() {
 											</div>
 											<div className="post-title">
 												<h2>
-													<Link to={`/single/news/${post.id}`}>
+													<Link to={`/single/news/${post.slug}`}>
 														{renderHTML(post.title.rendered)}
 													</Link>
 												</h2>

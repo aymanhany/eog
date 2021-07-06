@@ -133,7 +133,7 @@ function Reports({ match }) {
                               >
                                 <div className="post-gallery">
                                   <Link
-                                    to={`/single/reports/${post.id}`}
+                                    to={`/single/reports/${post.slug}`}
                                   >
                                     <img
                                       src={post.featured_media_src_url}
@@ -144,7 +144,7 @@ function Reports({ match }) {
                                 <div className="post-title">
                                   <h2>
                                     <Link
-                                      to={`/single/reports/${post.id}`}
+                                      to={`/single/reports/${post.slug}`}
                                     >
                                       {renderHTML(post.title.rendered)}
                                     </Link>

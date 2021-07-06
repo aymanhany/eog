@@ -21,7 +21,7 @@ function Footer() {
                     <div className="footer-last-line">
                         <div className="row">
                             <div className="col-md-6">
-                                <p>© COPYRIGHT 2017 Egypt oil gas</p>
+                                <p>© COPYRIGHT 2021 Egypt oil gas</p>
                             </div>
                         </div>
                     </div>

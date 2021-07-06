@@ -145,14 +145,14 @@ function Tv({ match }) {
 																	/>
 																	<div className="tv-holder">
 																		<Link
-																			to={`/single/tv/${post.id}`}
+																			to={`/single/tv/${post.slug}`}
 																		><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
 																	</div>
 																</div>
 																<div className="post-title">
 																	<h2>
 																		<Link
-																			to={`/single/tv/${post.id}`}
+																			to={`/single/tv/${post.slug}`}
 																		>
 																			{renderHTML(post.title.rendered)}
 																		</Link>
