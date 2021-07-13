@@ -52,7 +52,7 @@ const tableData = [
 ];
 SwiperCore.use([Navigation]);
 
-function SideBar(props) {
+function SideBar() {
 	const [news, setNews] = useState([]);
 	const [tags, setTags] = useState([]);
 	const [tableDataState, setTableDataState] = useState(tableData);
@@ -105,16 +105,6 @@ function SideBar(props) {
 					</li>
 				</ul>
 			</div>
-
-			{/* <aside id="text-15" className="widget widget_text">
-				<div className="textwidget">
-					{
-						props.cats.map((id) => (
-							<h4><Link to={`/features/#${id.id}`}>{id.name}</Link></h4>
-						))
-					}
-				</div>
-			</aside> */}
 			
 			<div className="sidebar-table">
 				<div className="sidebar-table-header">
