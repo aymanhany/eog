@@ -241,7 +241,7 @@ function Single({ match }) {
                           <div class="tagcloud mb-3">
                             {
                               tags.map((tag) => (
-                                <Link to={`/archive/news/tag/${tag.slug}`} class="tag-link-25 tag-link-position-1">{tag.name}</Link>
+                                <Link to={`/archive/${match.params.type}/tag/${tag.slug}`} class="tag-link-25 tag-link-position-1">{tag.name}</Link>
                               ))
 
                             }
@@ -255,10 +255,10 @@ function Single({ match }) {
                           ? renderHTML(post[0].acf.issuu_code)
                           : ""}
 
-                      {type == "reports" || type == "publications" ? (
-                        <a href={post[0].acf.pdf} className="d-block my-3" target="_blank" download>
+                      {type == "reports" || type == "publications" || type == "events_coverage" ? (
+                        post[0].acf.pdf ? <a href={post[0].acf.pdf} className="d-block my-3" target="_blank" download>
                           Download File
-                        </a>
+                        </a> : ''
                       ) : (
                         ""
                       )}
@@ -289,7 +289,7 @@ function Single({ match }) {
                         {like.map((post) => (
                           <SwiperSlide key={post.id}>
                             <div className="item news-post image-post3">
-                              <Link to={`/single/news/${post.slug}`}>
+                              <Link to={`/single/${match.params.type}/${post.slug}`}>
                                 <img
                                   // style={{ "minHeight": "200px" }}
                                   src={
@@ -302,7 +302,7 @@ function Single({ match }) {
                               </Link>
                               <div className="hover-box">
                                 <h2>
-                                  <Link to={`/single/news/${post.slug}`}>
+                                  <Link to={`/single/${match.params.type}/${post.slug}`}>
                                     {renderHTML(post.title.rendered)}
                                   </Link>
                                 </h2>

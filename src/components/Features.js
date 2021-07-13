@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
 	BrowserRouter as Router,
-	Switch,
-	Route,
 	Link,
-	useParams,
-	useHistory,
 	useLocation,
-	useRouteMatch,
 } from 'react-router-dom';
+import renderHTML from "react-render-html";
 
 import SideBar from './SideBar';
 import axios from 'axios';
 
 import Moment from 'react-moment';
 import 'moment-timezone';
-import TopViews from './TopViews';
+
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+
 import Loading from './Loading';
-import { param } from 'jquery';
+
+import logo from '../eog.png';
 
 function Features({ match }) {
 	const [data, setData] = useState([]);
@@ -115,63 +115,71 @@ function Features({ match }) {
 							{/* block content */}
 							<div className="block-content">
 								<div className="row">
-									{cats.map((cat) => (
-										<div key={cat.id} className="blockDiv col-sm-12">
-											<div class="title-section">
-												<h1>
-													<span>
-														<Link to={`archive/features/features_category/${cat.slug}`}>
-															{cat.slug.replaceAll('-', ' ')}
-														</Link>
-													</span>
-												</h1>
-											</div>
-											<div className="row">
-												{data.map(
-													(post, index) =>
-														data.length > 0 &&
-														post.features_category[0] === cat.id && (
-															<div
-																className="news-post standard-post2 col-sm-6"
-																key={`${post.id}-${post.slug}`}
-																ref={isLastElVisible}
-															>
-																<div className="post-gallery">
-																	<img
-																		src={post.featured_media_src_url}
-																		alt={renderHTML(post.title.rendered)}
-																	/>
-																</div>
-																<div className="post-title">
-																	<h2>
-																		<Link
-																			to={`/single/features/${post.slug}`}
+									<div className="col-sm-12">
+
+										<Tabs defaultActiveKey={cats[0].slug} id="features-tabs" transition={false} className="archive-tabs">
+											{cats.map((cat) => (
+												<Tab eventKey={cat.slug} title={cat.slug.replaceAll('-', ' ')}>
+													<div key={cat.id} className="blockDiv col-sm-12" id={cat.id}>
+														{/* <div class="title-section">
+															<h1>
+																<span>
+																	<Link to={`archive/features/features_category/${cat.slug}`}>
+																		{cat.slug.replaceAll('-', ' ')}
+																	</Link>
+																</span>
+															</h1>
+														</div> */}
+														<div className="row">
+															{data.map(
+																(post, index) =>
+																	data.length > 0 &&
+																	post.features_category[0] === cat.id && (
+																		<div
+																			className="news-post standard-post2 col-sm-6"
+																			key={`${post.id}-${post.slug}`}
+																			ref={isLastElVisible}
 																		>
-																			{renderHTML(post.title.rendered)}
-																		</Link>
-																	</h2>
-																	<ul className="post-tags">
-																		<li>
-																			<i className="fa fa-clock-o" />
-																			<Moment format="YYYY/MM/DD">
-																				{post.date}
-																			</Moment>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														)
-												)}
-											</div>
-										</div>
-									))}
+																			<div className="post-gallery">
+																				<img
+																					src={post.featured_media_src_url ? post.featured_media_src_url : logo}
+																					alt={renderHTML(post.title.rendered)}
+																				/>
+																			</div>
+																			<div className="post-title">
+																				<h2>
+																					<Link
+																						to={`/single/features/${post.slug}`}
+																					>
+																						{renderHTML(post.title.rendered)}
+																					</Link>
+																				</h2>
+																				<ul className="post-tags">
+																					<li>
+																						<i className="fa fa-clock-o" />
+																						<Moment format="YYYY/MM/DD">
+																							{post.date}
+																						</Moment>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																	)
+															)}
+														</div>
+													</div>
+												</Tab>
+											))}
+										</Tabs>
+
+									</div>
 								</div>
 							</div>
 							{/* End block content */}
 						</div>
 						<div className="col-sm-4">
 							{/* sidebar */}
-							<SideBar />
+							<SideBar cats={cats} />
 							{/* End sidebar */}
 						</div>
 					</div>

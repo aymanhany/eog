@@ -19,6 +19,10 @@ import 'moment-timezone';
 import Loading from './Loading';
 
 import renderHTML from "react-render-html";
+
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+
 function News({ match }) {
 	const [data, setData] = useState([]);
 	const [cats, setCats] = useState([]);
@@ -101,65 +105,105 @@ function News({ match }) {
 							{/* block content */}
 							<div className="block-content">
 								<div className="row">
-									{console.log(data)}
-									{cats.map((cat, index) => (
-										<div key={cat.id} className={`blockDiv col-sm-12 ${index == 0 ? 'd-none' : ''} ${index == cats.length - 1 ? 'd-none' : ''}`}>
-											<div class="title-section">
-												<h1>
-													<span>
-														<Link to={`archive/events_coverage/events_category/${cat.slug}`}>
-															{cat.slug}
-														</Link>
-													</span>
-												</h1>
-											</div>
-											<div className="row">
-												{data.map(
-													(post, index) =>
-														data.length > 0 &&
-														post.events_category[0] === cat.id && (
-															<div
-																className="news-post standard-post2 col-sm-6"
-																key={`${post.id}-${post.slug}`}
-															>
-																<div className="post-gallery">
-																	<Link
-																		to={`/single/events_coverage/${post.slug}`}
-																	>
-																		<img
-																			src={post.featured_media_src_url}
-																			alt={renderHTML(post.title.rendered)}
-																		/>
+									<div className="col-sm-12">
+										<Tabs defaultActiveKey={cats[0].slug} id="events-tabs" transition={false} className="archive-tabs">
+											{cats.map((cat, index) => (
+												<Tab eventKey={cat.slug} title={cat.slug.replaceAll('-', ' ')}>
+													<div className={`blockDiv col-sm-12`}>
+														{/* <div class="title-section">
+															<h1>
+																<span>
+																	<Link to={`archive/events_coverage/events_category/${cat.slug}`}>
+																		{cat.slug}
 																	</Link>
-																</div>
-																<div className="post-title">
-																	<h2>
-																		<Link
-																			to={`/single/events_coverage/${post.slug}`}
+																</span>
+															</h1>
+														</div> */}
+														<div className="row">
+															{data.map(
+																(post, index) =>
+																	post.events_category[0] === cat.id ?
+
+																		<div
+																			className="news-post standard-post2 col-sm-6"
+																			key={`${post.id}-${post.slug}`}
 																		>
-																			{renderHTML(post.title.rendered)}
-																		</Link>
-																	</h2>
-																	<ul className="post-tags">
-																		<li>
-																			<i className="fa fa-clock-o" />
-																			<Moment format="YYYY/MM/DD">
-																				{post.date}
-																			</Moment>
-																		</li>
-																	</ul>
-																</div>
-															</div>
-														)
-												)}
-											</div>
-											<h5 className="text-right mb-3">
-												<span>
-													<Link to={`archive/events_coverage/events_category/${cat.slug}`}>More &#8594;</Link>
-												</span>
-											</h5>
-										</div>
-									))}
+																			<div className="post-gallery">
+																				<Link
+																					to={`/single/events_coverage/${post.slug}`}
+																				>
+																					<img
+																						src={post.featured_media_src_url}
+																						alt={renderHTML(post.title.rendered)}
+																					/>
+																				</Link>
+																			</div>
+																			<div className="post-title">
+																				<h2>
+																					<Link
+																						to={`/single/events_coverage/${post.slug}`}
+																					>
+																						{renderHTML(post.title.rendered)}
+																					</Link>
+																				</h2>
+																				<ul className="post-tags">
+																					<li>
+																						<i className="fa fa-clock-o" />
+																						<Moment format="YYYY/MM/DD">
+																							{post.date}
+																						</Moment>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
+																		: (
+																			post.events_category[1] === cat.id ?
+																				<div
+																					className="news-post standard-post2 col-sm-6"
+																					key={`${post.id}-${post.slug}`}
+																				>
+																					<div className="post-gallery">
+																						<Link
+																							to={`/single/events_coverage/${post.slug}`}
+																						>
+																							<img
+																								src={post.featured_media_src_url}
+																								alt={renderHTML(post.title.rendered)}
+																							/>
+																						</Link>
+																					</div>
+																					<div className="post-title">
+																						<h2>
+																							<Link
+																								to={`/single/events_coverage/${post.slug}`}
+																							>
+																								{renderHTML(post.title.rendered)}
+																							</Link>
+																						</h2>
+																						<ul className="post-tags">
+																							<li>
+																								<i className="fa fa-clock-o" />
+																								<Moment format="YYYY/MM/DD">
+																									{post.date}
+																								</Moment>
+																							</li>
+																						</ul>
+																					</div>
+																				</div>
+																				: ''
+																		)
+															)}
+														</div>
+														<h5 className="text-right mb-3">
+															<span>
+																<Link to={`archive/events_coverage/events_category/${cat.slug}`}>More &#8594;</Link>
+															</span>
+														</h5>
+													</div>
+												</Tab>
+											))}
+										</Tabs>
+									</div>
 								</div>
 							</div>
 							{/* End block content */}

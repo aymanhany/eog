@@ -52,7 +52,7 @@ const tableData = [
 ];
 SwiperCore.use([Navigation]);
 
-function SideBar() {
+function SideBar(props) {
 	const [news, setNews] = useState([]);
 	const [tags, setTags] = useState([]);
 	const [tableDataState, setTableDataState] = useState(tableData);
@@ -105,6 +105,17 @@ function SideBar() {
 					</li>
 				</ul>
 			</div>
+
+			{/* <aside id="text-15" className="widget widget_text">
+				<div className="textwidget">
+					{
+						props.cats.map((id) => (
+							<h4><Link to={`/features/#${id.id}`}>{id.name}</Link></h4>
+						))
+					}
+				</div>
+			</aside> */}
+			
 			<div className="sidebar-table">
 				<div className="sidebar-table-header">
 					<h5>Commodity</h5>
@@ -124,6 +135,7 @@ function SideBar() {
 					<h5 className="sidebar-table-date">{lastMod}</h5>
 				</div>
 			</div>
+
 			<img
 				src="https://ads.egyptoil-gas.com/www/images/4687b97be36525ee64f45a30e99a1289.jpg"
 				width="100%"

@@ -74,10 +74,14 @@ function Header() {
 								<Link to="/publications">Publications</Link>
 							</li>
 							<li>
-								<Link to="/archive/features">Features</Link>
+								<Link to="/features">Features</Link>
 							</li>
-							<li>
-								<Link to="/events">Events</Link>
+							<li className="drop">
+								<Link to="/events" className="dropdown-toggle" data-hover="dropdown">Events</Link>
+								<ul className="dropdown" role="menu">
+									<li><Link to="/events_coverage">Events Coverage</Link></li>
+									<li><Link to="/events_calendar">Events Calendar</Link></li>
+								</ul>
 							</li>
 							<li>
 								<Link to="/reports">Reports</Link>

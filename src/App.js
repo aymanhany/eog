@@ -20,7 +20,7 @@ import Issues from './components/Issues';
 import Events_coverage from './components/Events_coverage';
 import SinglePage from './components/SinglePage';
 import Tv from './components/Tv';
-// import Features from './components/Features';
+import Features from './components/Features';
 
 function App() {
 	return (
@@ -29,14 +29,14 @@ function App() {
 				<Header />
 				<Switch>
 					<Route exact path="/" component={HomePage} />
-					<Route path="/single/:type/:slug" component={Single} />
-					<Route path="/page/:id" component={SinglePage} />
 					<Route exact path="/news" component={News} />
 					<Route exact path="/tv" component={Tv} />
 					<Route exact path="/reports" component={Reports} />
-					{/* <Route exact path="/features" component={Features} /> */}
-					<Route exact path="/events" component={Events_coverage} />
+					<Route exact path="/features" component={Features} />
+					<Route exact path="/events_coverage" component={Events_coverage} />
 					<Route exact path="/publications" component={Issues} />
+					<Route path="/single/:type/:slug" component={Single} />
+					<Route path="/page/:id" component={SinglePage} />
 					<Route exact path="/archive/:type" component={Archive} />
 					<Route exact path="/archive/:type/:category_type/:category" component={Archive} />
 					<Route path="/search" component={Search} />

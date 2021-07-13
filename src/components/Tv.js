@@ -17,9 +17,10 @@ import axios from 'axios';
 
 import Moment from 'react-moment';
 import 'moment-timezone';
-import TopViews from './TopViews';
+
 import Loading from './Loading';
-import { param } from 'jquery';
+import { Tab, Tabs } from 'react-bootstrap';
+
 
 function Tv({ match }) {
 	const [data, setData] = useState([]);
@@ -117,67 +118,73 @@ function Tv({ match }) {
 							{/* block content */}
 							<div className="block-content">
 								<div className="row">
-									{cats.map((cat) => (
-										<div key={cat.id} className="blockDiv col-sm-12">
-											<div class={`title-section ${cat.count === 0 ? 'd-none' : ''}`}>
-												<h1>
-													<span>
-														<Link to={`archive/tv/tv_category/${cat.slug}`}>
-															{renderHTML(cat.slug)}
-														</Link>
-													</span>
-												</h1>
-											</div>
-											<div className="row">
-												{data.map(
-													(post, index) =>
-														data.length > 0 &&
-														post.tv_category[0] === cat.id && (
-															<div
-																className="news-post standard-post2 col-sm-6"
-																key={`${post.id}-${post.slug}`}
-																ref={isLastElVisible}
-															>
-																<div className="tv post-gallery">
-																	<img
-																		src={post.featured_media_src_url}
-																		alt={renderHTML(post.title.rendered)}
-																	/>
-																	<div className="tv-holder">
-																		<Link
-																			to={`/single/tv/${post.slug}`}
-																		><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
-																	</div>
-																</div>
-																<div className="post-title">
-																	<h2>
-																		<Link
-																			to={`/single/tv/${post.slug}`}
+									<div className="col-sm-12">
+										<Tabs defaultActiveKey={cats[0].slug} id="features-tabs" transition={false} className="archive-tabs">
+											{cats.map((cat) => (
+												<Tab eventKey={cat.slug} title={cat.slug.replaceAll('-', ' ')}>
+													<div key={cat.id} className="blockDiv col-sm-12">
+														{/* <div class={`title-section ${cat.count === 0 ? 'd-none' : ''}`}>
+															<h1>
+																<span>
+																	<Link to={`archive/tv/tv_category/${cat.slug}`}>
+																		{renderHTML(cat.slug)}
+																	</Link>
+																</span>
+															</h1>
+														</div> */}
+														<div className="row">
+															{data.map(
+																(post, index) =>
+																	data.length > 0 &&
+																	post.tv_category[0] === cat.id && (
+																		<div
+																			className="news-post standard-post2 col-sm-6"
+																			key={`${post.id}-${post.slug}`}
+																			ref={isLastElVisible}
 																		>
-																			{renderHTML(post.title.rendered)}
-																		</Link>
-																	</h2>
-																	<ul className="post-tags">
-																		<li>
-																			<i className="fa fa-clock-o" />
-																			<Moment format="YYYY/MM/DD">
-																				{post.date}
-																			</Moment>
-																		</li>
-																	</ul>
-																</div>
-															</div>
+																			<div className="tv post-gallery">
+																				<img
+																					src={post.featured_media_src_url}
+																					alt={renderHTML(post.title.rendered)}
+																				/>
+																				<div className="tv-holder">
+																					<Link
+																						to={`/single/tv/${post.slug}`}
+																					><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
+																				</div>
+																			</div>
+																			<div className="post-title">
+																				<h2>
+																					<Link
+																						to={`/single/tv/${post.slug}`}
+																					>
+																						{renderHTML(post.title.rendered)}
+																					</Link>
+																				</h2>
+																				<ul className="post-tags">
+																					<li>
+																						<i className="fa fa-clock-o" />
+																						<Moment format="YYYY/MM/DD">
+																							{post.date}
+																						</Moment>
+																					</li>
+																				</ul>
+																			</div>
+																		</div>
 
-														)
-												)}
-											</div>
-											<h5 className={`text-right mb-3 ${cat.count === 0 ? 'd-none' : ''}`}>
-												<span>
-													<Link to={`archive/tv/tv_category/${cat.slug}`}>More &#8594;</Link>
-												</span>
-											</h5>
-										</div>
-									))}
+																	)
+															)}
+														</div>
+														<h5 className={`text-right mb-3 ${cat.count === 0 ? 'd-none' : ''}`}>
+															<span>
+																<Link to={`archive/tv/tv_category/${cat.slug}`}>More &#8594;</Link>
+															</span>
+														</h5>
+													</div>
+												</Tab>
+											))}
+										</Tabs>
+									</div>
 								</div>
 							</div>
 							{/* End block content */}
