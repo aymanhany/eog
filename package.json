@@ -1,6 +1,5 @@
 {
   "name": "eog",
-  // "homepage": "https://react.egyptoil-gas.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
