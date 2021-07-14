@@ -10,18 +10,18 @@ import {
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import HomePage from './components/HomePage';
-import Single from './components/Single';
-import Search from './components/Search';
-import Events_calendar from './components/Events_calendar';
-import SinglePage from './components/SinglePage';
 import Loading from './components/Loading';
 
+const Header = lazy(() => import('./components/Header'));
+const Single = lazy(() => import('./components/Single'));
+const Footer = lazy(() => import('./components/Footer'));
+const SinglePage = lazy(() => import('./components/SinglePage'));
+const Search = lazy(() => import('./components/Search'));
 const Features = lazy(() => import('./components/Features'));
 const Tv = lazy(() => import('./components/Tv'));
 const Events_coverage = lazy(() => import('./components/Events_coverage'));
+const Events_calendar = lazy(() => import('./components/Events_calendar'));
 const Issues = lazy(() => import('./components/Issues'));
 const Reports = lazy(() => import('./components/Reports'));
 const News = lazy(() => import('./components/News'));

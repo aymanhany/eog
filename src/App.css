@@ -1481,6 +1481,7 @@ section.features-today .owl-theme .owl-controls {
 div.block-content {
   padding: 30px 0 10px 0;
   position: relative;
+  min-height: 100vh;
 }
 
 div.block-content .advertisement {
