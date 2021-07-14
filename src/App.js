@@ -1,3 +1,5 @@
+import { lazy } from 'react';
+
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -12,16 +14,17 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './components/HomePage';
 import Single from './components/Single';
-import Archive from './components/Archive';
 import Search from './components/Search';
-import News from './components/News';
-import Reports from './components/Reports';
-import Issues from './components/Issues';
-import Events_coverage from './components/Events_coverage';
 import Events_calendar from './components/Events_calendar';
 import SinglePage from './components/SinglePage';
-import Tv from './components/Tv';
-import Features from './components/Features';
+
+const Features = 		lazy(() => import('./components/Features'));
+const Tv = 				lazy(() => import('./components/Tv'));
+const Events_coverage = lazy(() => import('./components/Events_coverage'));
+const Issues = 			lazy(() => import('./components/Issues'));
+const Reports = 		lazy(() => import('./components/Reports'));
+const News = 			lazy(() => import('./components/News'));
+const Archive = 		lazy(() => import('./components/Archive'));
 
 function App() {
 	return (

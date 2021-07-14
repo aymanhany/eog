@@ -141,10 +141,13 @@ function Features({ match }) {
 																			ref={isLastElVisible}
 																		>
 																			<div className="post-gallery">
-																				<img
-																					src={post.featured_media_src_url ? post.featured_media_src_url : logo}
-																					alt={renderHTML(post.title.rendered)}
-																				/>
+																				<Link
+																					to={`/single/features/${post.slug}`}
+																				><img
+																						src={post.featured_media_src_url ? post.featured_media_src_url : logo}
+																						alt={renderHTML(post.title.rendered)}
+																					/>
+																				</Link>
 																			</div>
 																			<div className="post-title">
 																				<h2>
