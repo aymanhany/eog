@@ -25,6 +25,8 @@ function LatestArticle() {
 			'https://egyptoil-gas.com/wp-json/wp/v2/news?per_page=10'
 		);
 		setNews(res.data);
+
+		
 	}, []);
 
 	return (
@@ -53,7 +55,7 @@ function LatestArticle() {
 											key={post.id}
 										>
 											<div className="post-gallery">
-												<img
+												<img loading="lazy"
 													src={post.featured_media_src_url}
 													alt={renderHTML(post.title.rendered)}
 												/>

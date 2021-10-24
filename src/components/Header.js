@@ -47,7 +47,7 @@ function Header() {
 				>
 					<Navbar.Brand>
 						<Link className="navbar-brand" to="/">
-							<img src={logo} alt="Logo" className="border-none" />
+							<img loading="lazy" loading="lazy"src={logo} alt="Logo" className="border-none" />
 						</Link>
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -143,7 +143,7 @@ function Features({ match }) {
 																			<div className="post-gallery">
 																				<Link
 																					to={`/single/features/${post.slug}`}
-																				><img
+																				><img loading="lazy"
 																						src={post.featured_media_src_url ? post.featured_media_src_url : logo}
 																						alt={renderHTML(post.title.rendered)}
 																					/>

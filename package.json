@@ -1,8 +1,10 @@
 {
   "name": "eog",
   "version": "0.1.0",
+  "homepage": "https://react.egyptoil-gas.com/",
   "private": true,
   "dependencies": {
+    "@loadable/component": "^5.15.0",
     "axios": "^0.21.1",
     "axios-cache-adapter": "^2.7.3",
     "bootstrap": "^4.6.0",

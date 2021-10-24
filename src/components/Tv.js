@@ -143,14 +143,14 @@ function Tv({ match }) {
 																			ref={isLastElVisible}
 																		>
 																			<div className="tv post-gallery">
-																				<img
+																				<img loading="lazy"
 																					src={post.featured_media_src_url}
 																					alt={renderHTML(post.title.rendered)}
 																				/>
 																				<div className="tv-holder">
 																					<Link
 																						to={`/single/tv/${post.slug}`}
-																					><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
+																					><img loading="lazy" loading="lazy"src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
 																				</div>
 																			</div>
 																			<div className="post-title">

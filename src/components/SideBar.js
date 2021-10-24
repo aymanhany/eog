@@ -126,7 +126,7 @@ function SideBar() {
 				</div>
 			</div>
 
-			<img
+			<img loading="lazy"
 				src="https://ads.egyptoil-gas.com/www/images/4687b97be36525ee64f45a30e99a1289.jpg"
 				width="100%"
 				className="my-5"

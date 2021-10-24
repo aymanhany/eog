@@ -176,7 +176,7 @@ function Single({ match }) {
                           type !== "reports" &&
                           type !== "publications" &&
                           type !== "maps" ? (
-                          <img
+                          <img loading="lazy"
                             src={
                               post[0].featured_media_src_url
                                 ? post[0].featured_media_src_url
@@ -201,7 +201,7 @@ function Single({ match }) {
                                   <button className="map-btn" onClick={resetTransform}>x</button>
                                 </div>
                                 <TransformComponent>
-                                  <img
+                                  <img loading="lazy"
                                     src={
                                       post[0].acf.svg_map
                                     }
@@ -290,7 +290,7 @@ function Single({ match }) {
                           <SwiperSlide key={post.id}>
                             <div className="item news-post image-post3">
                               <Link to={`/single/${match.params.type}/${post.slug}`}>
-                                <img
+                                <img loading="lazy"
                                   // style={{ "minHeight": "200px" }}
                                   src={
                                     post.featured_media_src_url

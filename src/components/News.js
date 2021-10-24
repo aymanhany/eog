@@ -23,7 +23,6 @@ import Tab from 'react-bootstrap/Tab';
 
 import Loading from './Loading';
 
-
 function News({ match }) {
 	const [data, setData] = useState([]);
 	const [cats, setCats] = useState([]);
@@ -123,7 +122,7 @@ function News({ match }) {
 									<div className="col-sm-12">
 										<Tabs defaultActiveKey={cats[0].slug} id="news-tabs" transition={false} className="archive-tabs">
 											{cats.map((cat) => (
-												<Tab eventKey={cat.slug} title={cat.slug.replaceAll('-', ' ')}>
+												<Tab eventKey={cat.slug} title={cat.slug.replaceAll('-', ' ')} key={cat.id}>
 
 													<div key={cat.id} className="blockDiv col-sm-12">
 														{/* <div class="title-section">
@@ -148,7 +147,7 @@ function News({ match }) {
 																				<Link
 																					to={`/single/news/${post.slug}`}
 																				>
-																					<img
+																					<img loading="lazy"
 																						src={post.featured_media_src_url}
 																						alt={renderHTML(post.title.rendered)}
 																					/>
@@ -182,7 +181,7 @@ function News({ match }) {
 																					<Link
 																						to={`/single/news/${post.slug}`}
 																					>
-																						<img
+																						<img loading="lazy"
 																							src={post.featured_media_src_url}
 																							alt={renderHTML(post.title.rendered)}
 																						/>

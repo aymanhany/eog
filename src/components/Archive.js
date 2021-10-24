@@ -143,7 +143,7 @@ function Archive({ match }) {
 															type === 'publications' ?
 																<Link
 																	to={`/single/${match.params.type}/${post.slug}`}
-																><img
+																><img loading="lazy"
 																		src={post.featured_media_src_url.replace("750x370", "210x295")}
 																		alt={renderHTML(post.title.rendered)}
 																	/>
@@ -152,7 +152,7 @@ function Archive({ match }) {
 																<Link
 																	to={`/single/${match.params.type}/${post.slug}`}
 																>
-																	<img
+																	<img loading="lazy"
 																		src={
 																			post.featured_media_src_url
 																				? post.featured_media_src_url
@@ -164,7 +164,7 @@ function Archive({ match }) {
 																		<div className="tv-holder">
 																			<Link
 																				to={`/single/tv/${post.slug}`}
-																			><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
+																			><img loading="lazy" loading="lazy"src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
 																		</div>
 																		: ''}
 																</Link>
@@ -200,7 +200,7 @@ function Archive({ match }) {
 															type === 'publications' ?
 																<Link
 																	to={`/single/${match.params.type}/${post.slug}`}
-																><img
+																><img loading="lazy"
 																		src={post.featured_media_src_url.replace("750x370", "210x295")}
 																		alt={renderHTML(post.title.rendered)}
 																	/>
@@ -209,7 +209,7 @@ function Archive({ match }) {
 																<Link
 																	to={`/single/${match.params.type}/${post.slug}`}
 																>
-																	<img
+																	<img loading="lazy"
 																		src={
 																			post.featured_media_src_url
 																				? post.featured_media_src_url
@@ -221,7 +221,7 @@ function Archive({ match }) {
 																		<div className="tv-holder">
 																			<Link
 																				to={`/single/tv/${post.slug}`}
-																			><img src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
+																			><img loading="lazy" loading="lazy"src="https://egyptoil-gas.com/wp-content/uploads/2021/07/ybtn.png" /></Link>
 																		</div>
 																		: ''}
 																</Link>

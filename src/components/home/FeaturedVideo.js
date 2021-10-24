@@ -74,7 +74,7 @@ function FeaturedVideo() {
 													)}
 													key={post.id}
 												>
-													<img
+													<img loading="lazy"
 														src={post.featured_media_src_url}
 														alt={renderHTML(post.title.rendered)}
 													/>
@@ -100,7 +100,7 @@ function FeaturedVideo() {
                                     videos.map(post => (
                                         <SwiperSlide>
                                             <div className="item news-post video-post">
-                                                <img src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} />
+                                                <img loading="lazy" loading="lazy"src={post.featured_media_src_url} alt={renderHTML(post.title.rendered)} />
                                                 <a target="_blank" href={post.acf.video} className="video-link"><i className="fa fa-play-circle-o" /></a>
                                                 <div className="hover-box">
                                                     <h2>{renderHTML(post.title.rendered)}</h2>

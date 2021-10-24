@@ -49,6 +49,36 @@ function TwoBoxes() {
       .then((res) => {
         setPublications(res.data);
       });
+
+      <script type='text/javascript' src='https://ads.egyptoil-gas.com/www/delivery/spcjs.php?id=1&amp;userType=premiumUser'></script>
+
+
+    // <ins data-revive-zoneid="1" data-revive-userType="premiumUser" data-revive-id="9689241d68f3bd2ccf2f346d74a3abaa"></ins>
+    // <script async src="//revive-adserver.example.com/www/delivery/asyncjs.php"></script>
+
+    //     const script = document.createElement('script');
+    //     script.src = `https://ads.egyptoil-gas.com/www/delivery/ajs.php?zoneid=1&cb=${Math.floor(Math.random() * 99999999999)}`;
+
+
+
+    //     const m3_u = 'https://ads.egyptoil-gas.com/www/delivery/ajs.php';
+    //     const m3_r = Math.floor(Math.random() * 99999999999);
+
+    //     if (!document.MAX_used) document.MAX_used = ',';
+    //     document.write("<scr" + "ipt type='text/javascript' src='" + m3_u);
+    //     document.write("?zoneid=1");
+    //     document.write('&amp;cb=' + m3_r);
+    //     if (document.MAX_used != ',') document.write("&amp;exclude=" + document.MAX_used);
+    //     document.write(document.charset ? '&amp;charset=' + document.charset : (document.characterSet ? '&amp;charset=' + document.characterSet : ''));
+    //     document.write("&amp;loc=" + escape(window.location));
+    //     if (document.referrer) document.write("&amp;referer=" + escape(document.referrer));
+    //     if (document.context) document.write("&context=" + escape(document.context));
+    //     if (document.mmm_fo) document.write("&amp;mmm_fo=1");
+    //     document.write("'><\/scr" + "ipt>");
+    //]]>--></script><noscript><a href='http://ads.egyptoil-gas.com/www/delivery/ck.php?n=ac4e6269&amp;cb=INSERT_RANDOM_NUMBER_HERE' target='_blank'><img loading="lazy" loading="lazy"src='http://ads.egyptoil-gas.com/www/delivery/avw.php?zoneid=1&amp;cb=INSERT_RANDOM_NUMBER_HERE&amp;n=ac4e6269' border='0' alt='' /></a></noscript>
+    // return () => {
+    //   document.body.removeChild(script);
+    // }
   }, []);
 
   const galleryPrev = React.useRef(null);
@@ -119,7 +149,7 @@ function TwoBoxes() {
                         <SwiperSlide key={post.id}>
                           <div className="item news-post image-post3">
                             <Link to={`/single/publications/${post.slug}`}>
-                              <img
+                              <img loading="lazy"
                                 src={post.featured_media_src_url.replace(
                                   "750x370",
                                   "210x295"
@@ -152,11 +182,16 @@ function TwoBoxes() {
                       </span>
                     </h5>
                   </div>
-                  <img
+                  {/* <img loading="lazy"
                     src="https://ads.egyptoil-gas.com/www/images/54a8fb2810a50256c62e6f11e122f887.jpg"
                     width="100%"
                     className="mb-5"
                   />
+                   */}
+                  {/* <a href={`https://ads.egyptoil-gas.com/www/delivery/ck.php?n=a744f791&cb=${Math.floor(Math.random() * 99999999999)}`} target='_blank'><img loading="lazy" loading="lazy"src={`https://ads.egyptoil-gas.com/www/delivery/avw.php?zoneid=2&userType=premiumUser&cb=${Math.floor(Math.random() * 99999999999)}&n=a744f791`} border='0' alt='' /></a> */}
+
+                  <div id="test"></div>
+
                   {/* End carousel box */}
                   {/* grid box */}
                   <div className="grid-box">
@@ -210,7 +245,7 @@ function TwoBoxes() {
                                   <SwiperSlide key={post.id}>
                                     <div className="item news-post image-post3">
                                       <Link to={`/single/reports/${post.slug}`}>
-                                        <img
+                                        <img loading="lazy"
                                           src={post.featured_media_src_url}
                                           alt={renderHTML(post.title.rendered)}
                                           height="200"
@@ -245,7 +280,7 @@ function TwoBoxes() {
                             </span>
                           </h5>
 
-                          <img
+                          <img loading="lazy"
                             src="https://ads.egyptoil-gas.com/www/images/54a8fb2810a50256c62e6f11e122f887.jpg"
                             width="100%"
                             className="mb-5 mt-3"
@@ -282,7 +317,7 @@ function TwoBoxes() {
                                       <Link
                                         to={`/single/events_coverage/${post.slug}`}
                                       >
-                                        <img
+                                        <img loading="lazy"
                                           src={post.featured_media_src_url}
                                           alt={renderHTML(post.title.rendered)}
                                         />
@@ -326,7 +361,7 @@ function TwoBoxes() {
                   </div>
                   {/* End grid box */}
 
-                  <img
+                  <img loading="lazy"
                     src="https://ads.egyptoil-gas.com/www/images/54a8fb2810a50256c62e6f11e122f887.jpg"
                     width="100%"
                     className="mb-3 mt-3"

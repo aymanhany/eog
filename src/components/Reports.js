@@ -139,7 +139,7 @@ function Reports({ match }) {
                                         <Link
                                           to={`/single/reports/${post.slug}`}
                                         >
-                                          <img
+                                          <img loading="lazy"
                                             src={post.featured_media_src_url}
                                             alt={renderHTML(post.title.rendered)}
                                           />

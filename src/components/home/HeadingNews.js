@@ -60,7 +60,7 @@ function HeadingNews() {
 								return (
 									<div className="news-post image-post" key={post.id}>
 										<Link to={`/single/news/${post.slug}`}>
-											<img
+											<img loading="lazy"
 												src={post.featured_media_src_url}
 												alt=""
 												height="150"
@@ -95,7 +95,7 @@ function HeadingNews() {
 											<SwiperSlide key={post.id}>
 												<div className="news-post image-post">
 													<Link to={`/single/news/${post.slug}`}>
-														<img
+														<img loading="lazy"
 															src={post.featured_media_src_url}
 															alt=""
 															height="300"
@@ -127,7 +127,7 @@ function HeadingNews() {
 								return (
 									<div className="news-post image-post" key={post.id}>
 										<Link to={`/single/news/${post.slug}`}>
-											<img
+											<img loading="lazy"
 												src={post.featured_media_src_url}
 												alt=""
 												height="150"

@@ -134,7 +134,7 @@ function Issues({ match }) {
                                         <Link
                                           to={`/single/publications/${post.slug}`}
                                         >
-                                          <img
+                                          <img loading="lazy"
                                             src={post.featured_media_src_url.replace(
                                               "750x370",
                                               "210x295"
